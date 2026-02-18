@@ -11,12 +11,12 @@ const Hero = () => {
     >
       {/* Animated background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" />
         <div
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-500/15 rounded-full blur-3xl animate-pulse"
+          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet-500/15 rounded-full blur-3xl animate-pulse"
           style={{ animationDelay: "1s" }}
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-800/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-800/10 rounded-full blur-3xl" />
         {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -33,9 +33,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-primary-500/30 bg-primary-950/50 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-indigo-500/30 bg-indigo-950/50 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-primary-300">
+            <span className="text-sm text-indigo-300">
               Available for opportunities
             </span>
           </div>
@@ -48,7 +48,7 @@ const Hero = () => {
           className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tight"
         >
           <span className="text-white">Hi, I'm </span>
-          <span className="bg-gradient-to-r from-primary-400 via-accent-400 to-primary-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
             {personalInfo.name}
           </span>
         </motion.h1>
@@ -57,7 +57,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl md:text-2xl text-dark-300 mb-3 font-light"
+          className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-3 font-light"
         >
           {personalInfo.title}
         </motion.p>
@@ -66,7 +66,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm sm:text-base text-dark-400 mb-8 max-w-2xl mx-auto leading-relaxed"
+          className="text-sm sm:text-base text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed"
         >
           {personalInfo.description}
         </motion.p>
@@ -83,7 +83,7 @@ const Hero = () => {
             smooth
             offset={-80}
             duration={500}
-            className="group px-8 py-3 bg-gradient-to-r from-primary-600 to-accent-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-primary-600/25 transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
+            className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
           >
             View My Work
           </Link>
@@ -93,7 +93,7 @@ const Hero = () => {
             smooth
             offset={-80}
             duration={500}
-            className="px-8 py-3 border border-dark-700 rounded-xl text-dark-300 hover:text-white hover:border-primary-500/50 hover:bg-dark-800/50 transition-all duration-300 cursor-pointer"
+            className="px-8 py-3 border border-slate-700 rounded-xl text-slate-300 hover:text-white hover:border-indigo-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer"
           >
             Get in Touch
           </Link>
@@ -109,13 +109,13 @@ const Hero = () => {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-dark-800/50 text-dark-400 hover:text-primary-400 hover:bg-dark-700/50 transition-all"
+            className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
           >
             <FaLinkedin size={20} />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
-            className="p-2.5 rounded-xl bg-dark-800/50 text-dark-400 hover:text-primary-400 hover:bg-dark-700/50 transition-all"
+            className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
           >
             <FaEnvelope size={20} />
           </a>
@@ -140,7 +140,7 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="text-dark-500 hover:text-primary-400 transition-colors"
+            className="text-slate-500 hover:text-indigo-400 transition-colors"
           >
             <FaChevronDown size={20} />
           </motion.div>

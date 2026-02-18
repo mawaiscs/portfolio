@@ -17,9 +17,9 @@ const ExperienceCard = ({ exp, index, isInView }) => {
       className="relative"
     >
       {/* Timeline dot */}
-      <div className="hidden md:block absolute -left-[41px] top-8 w-4 h-4 rounded-full bg-dark-950 border-2 border-primary-500 z-10" />
+      <div className="hidden md:block absolute -left-[41px] top-8 w-4 h-4 rounded-full bg-slate-950 border-2 border-indigo-500 z-10" />
 
-      <div className="group p-6 sm:p-8 rounded-2xl bg-dark-900/40 border border-dark-800/50 hover:border-primary-500/30 transition-all duration-300">
+      <div className="group p-6 sm:p-8 rounded-2xl bg-slate-900/40 border border-slate-800/50 hover:border-indigo-500/30 transition-all duration-300">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-4">
           <div>
@@ -27,12 +27,12 @@ const ExperienceCard = ({ exp, index, isInView }) => {
               <span className="text-3xl">{exp.logo}</span>
               <div>
                 <h3 className="text-xl font-bold text-white">{exp.company}</h3>
-                <p className="text-sm text-dark-400">{exp.period}</p>
+                <p className="text-sm text-slate-400">{exp.period}</p>
               </div>
             </div>
-            <p className="text-primary-400 font-medium">
+            <p className="text-indigo-400 font-medium">
               {exp.role}{" "}
-              <span className="text-dark-500 font-normal">• {exp.type}</span>
+              <span className="text-slate-500 font-normal">• {exp.type}</span>
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -40,7 +40,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
               href={exp.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-primary-600/10 text-primary-400 hover:bg-primary-600/20 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-indigo-600/10 text-indigo-400 hover:bg-indigo-600/20 transition-colors"
             >
               <FaExternalLinkAlt size={10} /> Website
             </a>
@@ -49,7 +49,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
                 href={exp.dashboard}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-accent-600/10 text-accent-400 hover:bg-accent-600/20 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-violet-600/10 text-violet-400 hover:bg-violet-600/20 transition-colors"
               >
                 <FaExternalLinkAlt size={10} /> Dashboard
               </a>
@@ -61,7 +61,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
                   href={d}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-accent-600/10 text-accent-400 hover:bg-accent-600/20 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-violet-600/10 text-violet-400 hover:bg-violet-600/20 transition-colors"
                 >
                   <FaExternalLinkAlt size={10} /> Dashboard {i + 1}
                 </a>
@@ -69,7 +69,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
           </div>
         </div>
 
-        <p className="text-dark-300 text-sm leading-relaxed mb-4">
+        <p className="text-slate-300 text-sm leading-relaxed mb-4">
           {exp.description}
         </p>
 
@@ -78,9 +78,9 @@ const ExperienceCard = ({ exp, index, isInView }) => {
           {visibleHighlights.map((h, i) => (
             <li
               key={i}
-              className="flex items-start gap-2 text-sm text-dark-300"
+              className="flex items-start gap-2 text-sm text-slate-300"
             >
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
               {h}
             </li>
           ))}
@@ -89,7 +89,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
         {exp.highlights.length > 4 && (
           <button
             onClick={() => setExpanded(!expanded)}
-            className="inline-flex items-center gap-1 text-xs text-primary-400 hover:text-primary-300 transition-colors mb-4"
+            className="inline-flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 transition-colors mb-4"
           >
             {expanded ? (
               <>
@@ -109,7 +109,7 @@ const ExperienceCard = ({ exp, index, isInView }) => {
           {exp.tech.map((t) => (
             <span
               key={t}
-              className="text-xs px-2.5 py-1 rounded-md bg-dark-800 text-dark-300 border border-dark-700/50"
+              className="text-xs px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700/50"
             >
               {t}
             </span>
@@ -136,12 +136,12 @@ const Experience = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Experience
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="relative md:ml-8">
           {/* Timeline line */}
-          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500/50 via-dark-700 to-transparent -translate-x-[33px]" />
+          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-slate-700 to-transparent -translate-x-[33px]" />
 
           <div className="space-y-8">
             {experiences.map((exp, i) => (

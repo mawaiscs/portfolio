@@ -19,7 +19,7 @@ const Projects = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Featured Projects
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full" />
+          <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full" />
         </motion.div>
 
         <div className="space-y-12">
@@ -29,7 +29,7 @@ const Projects = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="group rounded-2xl overflow-hidden bg-dark-900/40 border border-dark-800/50 hover:border-primary-500/30 transition-all duration-300"
+              className="group rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/50 hover:border-indigo-500/30 transition-all duration-300"
             >
               {/* Project header with gradient */}
               <div
@@ -38,7 +38,7 @@ const Projects = () => {
                   background: `linear-gradient(to bottom right, ${project.gradientFrom}26, ${project.gradientTo}26)`,
                 }}
               >
-                <div className="absolute inset-0 bg-dark-950/60" />
+                <div className="absolute inset-0 bg-slate-950/60" />
                 <div className="relative z-10">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ const Projects = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-dark-200 leading-relaxed max-w-3xl">
+                  <p className="text-slate-200 leading-relaxed max-w-3xl">
                     {project.description}
                   </p>
                 </div>
@@ -71,17 +71,17 @@ const Projects = () => {
               <div className="p-8 sm:p-10">
                 <div className="grid sm:grid-cols-2 gap-8">
                   <div>
-                    <h4 className="text-sm font-semibold text-dark-400 uppercase tracking-wider mb-4">
+                    <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
                       Key Features
                     </h4>
                     <ul className="space-y-3">
                       {project.features.map((f, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-dark-300"
+                          className="flex items-start gap-2 text-sm text-slate-300"
                         >
                           <FaCheckCircle
-                            className="text-primary-500 mt-0.5 shrink-0"
+                            className="text-indigo-500 mt-0.5 shrink-0"
                             size={14}
                           />
                           {f}
@@ -90,14 +90,14 @@ const Projects = () => {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-dark-400 uppercase tracking-wider mb-4">
+                    <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
                       Tech Stack
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((t) => (
                         <span
                           key={t}
-                          className="text-xs px-3 py-1.5 rounded-lg bg-dark-800 text-dark-300 border border-dark-700/50 hover:border-primary-500/30 hover:text-primary-300 transition-colors"
+                          className="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700/50 hover:border-indigo-500/30 hover:text-indigo-300 transition-colors"
                         >
                           {t}
                         </span>

@@ -63,11 +63,11 @@ const Contact = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Get in Touch
           </h2>
-          <p className="text-dark-400 max-w-lg mx-auto">
+          <p className="text-slate-400 max-w-lg mx-auto">
             Have a project in mind or want to discuss opportunities? I'd love to
             hear from you.
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full mt-4" />
+          <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full mt-4" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -91,18 +91,18 @@ const Contact = () => {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className={`flex items-center gap-4 p-4 rounded-xl bg-dark-900/50 border border-dark-800/50 hover:border-primary-500/30 transition-all group ${
+                  className={`flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-indigo-500/30 transition-all group ${
                     item.href ? "cursor-pointer" : "cursor-default"
                   }`}
                 >
-                  <div className="p-3 rounded-lg bg-primary-600/10 text-primary-400 group-hover:bg-primary-600/20 transition-colors">
+                  <div className="p-3 rounded-lg bg-indigo-600/10 text-indigo-400 group-hover:bg-indigo-600/20 transition-colors">
                     <item.icon size={18} />
                   </div>
                   <div>
-                    <p className="text-xs text-dark-500 uppercase tracking-wider">
+                    <p className="text-xs text-slate-500 uppercase tracking-wider">
                       {item.label}
                     </p>
-                    <p className="text-dark-200 text-sm">{item.value}</p>
+                    <p className="text-slate-200 text-sm">{item.value}</p>
                   </div>
                 </a>
               ))}
@@ -117,7 +117,7 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm text-dark-400 mb-1.5">
+                <label className="block text-sm text-slate-400 mb-1.5">
                   Name
                 </label>
                 <input
@@ -127,12 +127,12 @@ const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-800 text-white placeholder-dark-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm text-dark-400 mb-1.5">
+                <label className="block text-sm text-slate-400 mb-1.5">
                   Email
                 </label>
                 <input
@@ -142,12 +142,12 @@ const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-800 text-white placeholder-dark-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
               <div>
-                <label className="block text-sm text-dark-400 mb-1.5">
+                <label className="block text-sm text-slate-400 mb-1.5">
                   Message
                 </label>
                 <textarea
@@ -157,13 +157,13 @@ const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-dark-900/50 border border-dark-800 text-white placeholder-dark-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500/50 transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-primary-600/25 transition-all duration-300 hover:-translate-y-0.5"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <FaPaperPlane size={14} />
                 Send Message

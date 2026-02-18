@@ -21,7 +21,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-dark-950/80 backdrop-blur-xl border-b border-dark-800/50 shadow-lg shadow-dark-950/50"
+          ? "bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50 shadow-lg shadow-slate-950/50"
           : "bg-transparent"
       }`}
     >
@@ -36,7 +36,7 @@ const Navbar = () => {
             duration={500}
             className="cursor-pointer"
           >
-            <span className="text-xl font-bold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
               MA
             </span>
           </Link>
@@ -51,8 +51,8 @@ const Navbar = () => {
                 smooth
                 offset={-80}
                 duration={500}
-                activeClass="!text-primary-400"
-                className="px-3 py-2 text-sm text-dark-300 hover:text-primary-400 transition-colors cursor-pointer rounded-lg hover:bg-dark-800/50"
+                activeClass="!text-indigo-400"
+                className="px-3 py-2 text-sm text-slate-300 hover:text-indigo-400 transition-colors cursor-pointer rounded-lg hover:bg-slate-800/50"
               >
                 {link.name}
               </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
               href="/Muhammad_Awais_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-primary-600 hover:bg-primary-500 text-white transition-colors"
+              className="ml-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
             >
               Resume
             </a>
@@ -70,7 +70,7 @@ const Navbar = () => {
           {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-dark-300 hover:text-white transition-colors"
+            className="md:hidden text-slate-300 hover:text-white transition-colors"
           >
             {isOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
           </button>
@@ -84,7 +84,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-dark-800"
+            className="md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-800"
           >
             <div className="px-4 py-3 space-y-1">
               {navLinks.map((link) => (
@@ -96,7 +96,7 @@ const Navbar = () => {
                   offset={-80}
                   duration={500}
                   onClick={() => setIsOpen(false)}
-                  className="block px-3 py-2 text-dark-300 hover:text-primary-400 hover:bg-dark-800/50 rounded-lg transition-colors cursor-pointer"
+                  className="block px-3 py-2 text-slate-300 hover:text-indigo-400 hover:bg-slate-800/50 rounded-lg transition-colors cursor-pointer"
                 >
                   {link.name}
                 </Link>
