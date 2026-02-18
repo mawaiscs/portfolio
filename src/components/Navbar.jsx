@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { navLinks } from "../data/portfolioData";
@@ -57,14 +58,12 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <a
-              href="/Muhammad_Awais_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <RouterLink
+              to="/resume"
               className="ml-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
             >
               Resume
-            </a>
+            </RouterLink>
           </div>
 
           {/* Mobile toggle */}
