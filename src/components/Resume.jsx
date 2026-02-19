@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaArrowLeft,
-  FaPrint,
+  FaDownload,
   FaEnvelope,
   FaPhone,
   FaMapMarkerAlt,
@@ -21,47 +21,42 @@ const RESUME_TITLE = "Muhammad Awais - Resume";
 const SITE_TITLE = "Muhammad Awais | Senior Software Engineer";
 
 const Resume = () => {
+  const resumeRef = useRef(null);
+  const [downloading, setDownloading] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = RESUME_TITLE;
-
-    const onBeforePrint = () => {
-      document.title = RESUME_TITLE;
-    };
-    const onAfterPrint = () => {
-      document.title = RESUME_TITLE;
-    };
-    window.addEventListener("beforeprint", onBeforePrint);
-    window.addEventListener("afterprint", onAfterPrint);
-
     return () => {
       document.title = SITE_TITLE;
-      window.removeEventListener("beforeprint", onBeforePrint);
-      window.removeEventListener("afterprint", onAfterPrint);
     };
   }, []);
 
-  const handlePrint = () => {
-    // Remove all existing title elements and create a fresh one
-    const existingTitles = document.querySelectorAll("title");
-    console.log("Number of <title> elements:", existingTitles.length);
-    existingTitles.forEach((t) => t.remove());
-
-    const newTitle = document.createElement("title");
-    newTitle.textContent = RESUME_TITLE;
-    document.head.appendChild(newTitle);
-    document.title = RESUME_TITLE;
-
-    console.log("After reset - document.title:", document.title);
-    console.log(
-      "After reset - all <title> tags:",
-      [...document.querySelectorAll("title")].map((t) => t.textContent),
-    );
-
-    setTimeout(() => {
-      console.log("In setTimeout - document.title:", document.title);
-      window.print();
-    }, 300);
+  const handleDownload = async () => {
+    if (downloading) return;
+    setDownloading(true);
+    try {
+      const html2pdf = (await import("html2pdf.js")).default;
+      const element = resumeRef.current;
+      const opt = {
+        margin: [0.4, 0.5, 0.4, 0.5],
+        filename: "Muhammad_Awais_Resume.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          letterRendering: true,
+        },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+        enableLinks: true,
+      };
+      await html2pdf().set(opt).from(element).save();
+    } catch (err) {
+      console.error("PDF download failed:", err);
+    } finally {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -76,16 +71,21 @@ const Resume = () => {
             <FaArrowLeft /> Back to Portfolio
           </Link>
           <button
-            onClick={handlePrint}
-            className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors"
+            onClick={handleDownload}
+            disabled={downloading}
+            className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <FaPrint /> Print / Save PDF
+            <FaDownload /> {downloading ? "Generating…" : "Download PDF"}
           </button>
         </div>
       </div>
 
       {/* Resume Content */}
-      <div className="max-w-4xl mx-auto px-8 py-10 print:px-0 print:py-0">
+      <div
+        ref={resumeRef}
+        className="max-w-4xl mx-auto px-8 py-10"
+        style={{ fontFamily: "Inter, sans-serif" }}
+      >
         {/* Header */}
         <header className="text-center mb-6 pb-4 border-b-2 border-gray-800">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
@@ -95,23 +95,26 @@ const Resume = () => {
             {personalInfo.title}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-3 text-sm text-gray-600">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 whitespace-nowrap">
               <FaMapMarkerAlt className="text-xs" /> {personalInfo.location}
             </span>
             <span className="text-gray-300">|</span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 whitespace-nowrap">
               <FaPhone className="text-xs" /> {personalInfo.phone}
             </span>
             <span className="text-gray-300">|</span>
-            <span className="flex items-center gap-1">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
+            >
               <FaEnvelope className="text-xs" /> {personalInfo.email}
-            </span>
+            </a>
             <span className="text-gray-300">|</span>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-indigo-600 hover:underline"
+              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
             >
               <FaLinkedin className="text-xs" /> LinkedIn
             </a>
@@ -120,7 +123,7 @@ const Resume = () => {
               href="https://portfolio-mawais.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-indigo-600 hover:underline"
+              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
             >
               <FaGlobe className="text-xs" /> Portfolio
             </a>
@@ -235,17 +238,6 @@ const Resume = () => {
           </p>
         </section>
       </div>
-
-      {/* Print styles */}
-      <style>{`
-        @media print {
-          @page { margin: 0.5in; size: letter; }
-          body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          .print\\:hidden { display: none !important; }
-          .print\\:px-0 { padding-left: 0; padding-right: 0; }
-          .print\\:py-0 { padding-top: 0; padding-bottom: 0; }
-        }
-      `}</style>
     </div>
   );
 };
