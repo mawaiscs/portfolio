@@ -29,9 +29,11 @@ const Resume = () => {
     };
   }, []);
 
-  const handleDownload = async () => {
-    const { default: generatePDF } = await import("../utils/generateResumePDF");
-    generatePDF({ personalInfo, experiences, skillCategories, education });
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/Muhammad_Awais_Resume.pdf";
+    link.download = "Muhammad_Awais_Resume.pdf";
+    link.click();
   };
 
   return (
