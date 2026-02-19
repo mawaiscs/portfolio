@@ -44,7 +44,7 @@ export const personalInfo = {
   email: "muhammadawais.cse@gmail.com",
   phone: "+923018768609",
   location: "Lahore, Pakistan",
-  linkedin: "https://www.linkedin.com/in/muhammad-awais-a9392335a/",
+  linkedin: "https://www.linkedin.com/in/awais-cs/",
 };
 
 export const navLinks = [

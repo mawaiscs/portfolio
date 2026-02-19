@@ -4,7 +4,7 @@
 
 ### Senior Software Engineer
 
-📍 Lahore, Pakistan &nbsp;|&nbsp; 📞 +923018768609 &nbsp;|&nbsp; ✉️ muhammadawais.cse@gmail.com &nbsp;|&nbsp; [LinkedIn](https://www.linkedin.com/in/muhammad-awais-a9392335a/) &nbsp;|&nbsp; [Portfolio](https://portfolio-mawais.vercel.app)
+📍 Lahore, Pakistan &nbsp;|&nbsp; 📞 +923018768609 &nbsp;|&nbsp; ✉️ muhammadawais.cse@gmail.com &nbsp;|&nbsp; [LinkedIn](https://www.linkedin.com/in/awais-cs/) &nbsp;|&nbsp; [Portfolio](https://portfolio-mawais.vercel.app)
 
 </div>
 
