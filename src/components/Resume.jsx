@@ -29,20 +29,9 @@ const Resume = () => {
     };
   }, []);
 
-  const handleDownload = () => {
-    // Force set title (Chrome uses this for PDF filename)
-    document.title = FILE_NAME;
-
-    // Also force the <title> element
-    const titleEl = document.querySelector("title");
-    if (titleEl) titleEl.textContent = FILE_NAME;
-
-    // Use requestAnimationFrame to ensure DOM has updated before print
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.print();
-      });
-    });
+  const handleDownload = async () => {
+    const { default: generatePDF } = await import("../utils/generateResumePDF");
+    generatePDF({ personalInfo, experiences, skillCategories, education });
   };
 
   return (
@@ -229,59 +218,6 @@ const Resume = () => {
           </p>
         </section>
       </div>
-
-      {/* Print-specific styles */}
-      <style>{`
-        @media print {
-          @page {
-            margin: 0.5in 0.6in;
-            size: letter;
-          }
-
-          /* Hide non-resume elements */
-          .no-print { display: none !important; }
-
-          /* Reset body */
-          body {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            margin: 0;
-            padding: 0;
-          }
-
-          /* Resume content fills page */
-          .resume-content {
-            max-width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-
-          /* Keep links styled and clickable */
-          a[href] {
-            color: #4f46e5 !important;
-            text-decoration: underline !important;
-          }
-
-          /* Prevent page breaks inside sections */
-          section { break-inside: avoid; }
-          h2, h3 { break-after: avoid; }
-          ul { break-inside: avoid; }
-
-          /* Tech tags background */
-          .bg-indigo-50 {
-            background-color: #eef2ff !important;
-          }
-
-          /* Ensure icons align with text */
-          svg {
-            display: inline-block;
-            vertical-align: middle;
-          }
-
-          /* Remove min-height */
-          .min-h-screen { min-height: auto !important; }
-        }
-      `}</style>
     </div>
   );
 };
