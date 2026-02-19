@@ -1,7 +1,7 @@
 # MUHAMMAD AWAIS
 
 **Senior Software Engineer** | Lahore, Pakistan
-+923018768609 | muhammadawais.cse@gmail.com | [LinkedIn](https://www.linkedin.com/in/muhammad-awais-a9392335a/)
++923018768609 | muhammadawais.cse@gmail.com | [LinkedIn](https://www.linkedin.com/in/muhammad-awais-a9392335a/) | [Portfolio](https://portfolio-mawais.vercel.app)
 
 ---
 
@@ -50,7 +50,7 @@ Senior Software Engineer with 3+ years of experience building scalable web appli
 ### BINARY TECH (DoctorNow)
 
 **Senior Software Engineer** | May 2022 – April 2025
-[https://docnow.ai](https://docnow.ai) | [Live Dashboard](https://live.doctornow.io/login) | [Wound Care Dashboard](https://woundcare.doctornow.io/login)
+[https://docnow.ai](https://docnow.ai) | [Live Dashboard](https://live.doctornow.io/login)
 
 - Led front-end architecture using Angular with lazy loading, AOT compilation, and optimized bundle sizes for desktop and mobile
 - Engineered scalable backend APIs using Node.js and Express with modular architecture, middleware pipelines, and comprehensive error handling
