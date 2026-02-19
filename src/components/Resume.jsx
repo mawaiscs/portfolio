@@ -17,15 +17,52 @@ import {
   education,
 } from "../data/portfolioData";
 
+const RESUME_TITLE = "Muhammad Awais - Resume";
+const SITE_TITLE = "Muhammad Awais | Senior Software Engineer";
+
 const Resume = () => {
   useEffect(() => {
-    document.title = "Resume – Muhammad Awais";
+    window.scrollTo(0, 0);
+    document.title = RESUME_TITLE;
+
+    const onBeforePrint = () => {
+      document.title = RESUME_TITLE;
+    };
+    const onAfterPrint = () => {
+      document.title = RESUME_TITLE;
+    };
+    window.addEventListener("beforeprint", onBeforePrint);
+    window.addEventListener("afterprint", onAfterPrint);
+
     return () => {
-      document.title = "Muhammad Awais | Portfolio";
+      document.title = SITE_TITLE;
+      window.removeEventListener("beforeprint", onBeforePrint);
+      window.removeEventListener("afterprint", onAfterPrint);
     };
   }, []);
 
-  const handlePrint = () => window.print();
+  const handlePrint = () => {
+    // Remove all existing title elements and create a fresh one
+    const existingTitles = document.querySelectorAll("title");
+    console.log("Number of <title> elements:", existingTitles.length);
+    existingTitles.forEach((t) => t.remove());
+
+    const newTitle = document.createElement("title");
+    newTitle.textContent = RESUME_TITLE;
+    document.head.appendChild(newTitle);
+    document.title = RESUME_TITLE;
+
+    console.log("After reset - document.title:", document.title);
+    console.log(
+      "After reset - all <title> tags:",
+      [...document.querySelectorAll("title")].map((t) => t.textContent),
+    );
+
+    setTimeout(() => {
+      console.log("In setTimeout - document.title:", document.title);
+      window.print();
+    }, 300);
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
