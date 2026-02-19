@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaCode, FaRocket, FaUsers } from "react-icons/fa";
+import { FaCode, FaRocket, FaLayerGroup } from "react-icons/fa";
 
 const stats = [
   { label: "Years Experience", value: "3+", icon: FaCode },
   { label: "Projects Delivered", value: "10+", icon: FaRocket },
-  { label: "Technologies", value: "25+", icon: FaUsers },
+  { label: "Technologies", value: "25+", icon: FaLayerGroup },
 ];
 
 const About = () => {

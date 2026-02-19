@@ -109,12 +109,14 @@ const Hero = () => {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn Profile"
             className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
           >
             <FaLinkedin size={20} />
           </a>
           <a
             href={`mailto:${personalInfo.email}`}
+            aria-label="Send Email"
             className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
           >
             <FaEnvelope size={20} />

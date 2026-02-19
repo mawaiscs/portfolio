@@ -69,6 +69,7 @@ const Navbar = () => {
           {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className="md:hidden text-slate-300 hover:text-white transition-colors"
           >
             {isOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
@@ -100,6 +101,13 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+              <RouterLink
+                to="/resume"
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-colors text-center mt-2"
+              >
+                Resume
+              </RouterLink>
             </div>
           </motion.div>
         )}

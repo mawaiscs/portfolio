@@ -7,16 +7,12 @@ import {
   FaGitAlt,
   FaPython,
   FaLinkedin,
-  FaGithub,
   FaEnvelope,
   FaPhone,
-  FaMapMarkerAlt,
-  FaExternalLinkAlt,
   FaServer,
   FaCloud,
   FaDatabase,
   FaShieldAlt,
-  FaCreditCard,
   FaRobot,
 } from "react-icons/fa";
 import {
@@ -26,13 +22,14 @@ import {
   SiRedis,
   SiFirebase,
   SiTailwindcss,
+  SiBootstrap,
+  SiMui,
   SiExpress,
   SiNginx,
   SiVercel,
   SiGooglecloud,
   SiTwilio,
   SiOpenai,
-  SiStripe,
   SiSocketdotio,
   SiJest,
   SiPostman,
@@ -51,7 +48,7 @@ export const personalInfo = {
   phone: "+923018768609",
   location: "Lahore, Pakistan",
   linkedin: "https://www.linkedin.com/in/muhammad-awais-a9392335a/",
-  github: "#",
+  github: "https://github.com/muhammadawaisg",
 };
 
 export const navLinks = [
@@ -108,10 +105,7 @@ export const experiences = [
     type: "MEAN Stack",
     period: "May 2022 – April 2025",
     website: "https://docnow.ai/",
-    dashboards: [
-      "https://live.doctornow.io/login",
-      "https://woundcare.doctornow.io/login",
-    ],
+    dashboard: "https://live.doctornow.io/login",
     logo: "🏥",
     color: "from-blue-500 to-cyan-500",
     description:
@@ -125,7 +119,7 @@ export const experiences = [
       "Integrated third-party services including payment gateways, Twilio for SMS/voice, and Zoom SDK for video consultations",
       "Developed features like digital prescriptions, video consultation rooms, appointment scheduling, and patient history tracking",
       "Reduced page load time by 40% and increased user engagement by 25% through code optimization, CDN integration, and UI revamp",
-      "Participated in Agile development with sprint planning, code reviews, mentoring junior developers, and CI/CD pipeline management",
+      "Led Agile ceremonies — sprint planning, code reviews, mentoring junior developers, and CI/CD pipeline management",
     ],
     tech: [
       "Angular",
@@ -155,6 +149,8 @@ export const skillCategories = [
       { name: "TypeScript", icon: SiTypescript },
       { name: "JavaScript", icon: SiJavascript },
       { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: SiBootstrap },
+      { name: "MUI", icon: SiMui },
     ],
   },
   {
@@ -202,6 +198,7 @@ export const skillCategories = [
       { name: "Twilio", icon: SiTwilio },
       { name: "Deepgram STT/TTS", icon: FaRobot },
       { name: "Google STT/TTS", icon: SiGooglecloud },
+      { name: "Infobip", icon: FaRobot },
     ],
   },
   {
@@ -262,7 +259,6 @@ export const projects = [
     links: {
       live: "https://docnow.ai/",
       dashboard: "https://live.doctornow.io/login",
-      woundcare: "https://woundcare.doctornow.io/login",
     },
     features: [
       "Real-time video consultations with Zoom SDK",

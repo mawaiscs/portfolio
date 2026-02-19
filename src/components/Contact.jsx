@@ -47,8 +47,13 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoLink = `mailto:${personalInfo.email}?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.name} (${formData.email})`;
-    window.open(mailtoLink);
+    const subject = encodeURIComponent(
+      `Portfolio Contact from ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      `${formData.message}\n\nFrom: ${formData.name} (${formData.email})`,
+    );
+    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -92,7 +97,9 @@ const Contact = () => {
                       : undefined
                   }
                   className={`flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-indigo-500/30 transition-all group ${
-                    item.href ? "cursor-pointer" : "cursor-default"
+                    item.href
+                      ? "cursor-pointer"
+                      : "cursor-default pointer-events-none"
                   }`}
                 >
                   <div className="p-3 rounded-lg bg-indigo-600/10 text-indigo-400 group-hover:bg-indigo-600/20 transition-colors">
