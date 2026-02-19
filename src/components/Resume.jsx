@@ -17,29 +17,38 @@ import {
   education,
 } from "../data/portfolioData";
 
-const RESUME_TITLE = "Muhammad Awais - Resume";
+const FILE_NAME = "Muhammad_Awais_Resume";
 const SITE_TITLE = "Muhammad Awais | Senior Software Engineer";
 
 const Resume = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = RESUME_TITLE;
+    document.title = FILE_NAME;
     return () => {
       document.title = SITE_TITLE;
     };
   }, []);
 
   const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/Muhammad_Awais_Resume.pdf";
-    link.download = "Muhammad_Awais_Resume.pdf";
-    link.click();
+    // Force set title (Chrome uses this for PDF filename)
+    document.title = FILE_NAME;
+
+    // Also force the <title> element
+    const titleEl = document.querySelector("title");
+    if (titleEl) titleEl.textContent = FILE_NAME;
+
+    // Use requestAnimationFrame to ensure DOM has updated before print
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.print();
+      });
+    });
   };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Top Bar — hidden when printing */}
-      <div className="print:hidden sticky top-0 z-50 bg-slate-900 text-white">
+      <div className="no-print sticky top-0 z-50 bg-slate-900 text-white">
         <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
           <Link
             to="/"
@@ -58,7 +67,7 @@ const Resume = () => {
 
       {/* Resume Content */}
       <div
-        className="max-w-4xl mx-auto px-8 py-10"
+        className="resume-content max-w-4xl mx-auto px-8 py-10"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
         {/* Header */}
@@ -69,38 +78,43 @@ const Resume = () => {
           <p className="text-lg font-medium text-indigo-700 mt-1">
             {personalInfo.title}
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-3 text-sm text-gray-600">
-            <span className="flex items-center gap-1 whitespace-nowrap">
-              <FaMapMarkerAlt className="text-xs" /> {personalInfo.location}
+          <div className="flex items-center justify-center gap-x-3 mt-3 text-sm text-gray-600 flex-nowrap">
+            <span className="inline-flex items-center gap-1 whitespace-nowrap">
+              <FaMapMarkerAlt className="text-xs shrink-0" />
+              <span>{personalInfo.location}</span>
             </span>
             <span className="text-gray-300">|</span>
-            <span className="flex items-center gap-1 whitespace-nowrap">
-              <FaPhone className="text-xs" /> {personalInfo.phone}
+            <span className="inline-flex items-center gap-1 whitespace-nowrap">
+              <FaPhone className="text-xs shrink-0" />
+              <span>{personalInfo.phone}</span>
             </span>
             <span className="text-gray-300">|</span>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
+              className="inline-flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
             >
-              <FaEnvelope className="text-xs" /> {personalInfo.email}
+              <FaEnvelope className="text-xs shrink-0" />
+              <span>{personalInfo.email}</span>
             </a>
             <span className="text-gray-300">|</span>
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
+              className="inline-flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
             >
-              <FaLinkedin className="text-xs" /> LinkedIn
+              <FaLinkedin className="text-xs shrink-0" />
+              <span>LinkedIn</span>
             </a>
             <span className="text-gray-300">|</span>
             <a
               href="https://portfolio-mawais.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
+              className="inline-flex items-center gap-1 whitespace-nowrap text-indigo-600 hover:underline"
             >
-              <FaGlobe className="text-xs" /> Portfolio
+              <FaGlobe className="text-xs shrink-0" />
+              <span>Portfolio</span>
             </a>
           </div>
         </header>
@@ -120,7 +134,7 @@ const Resume = () => {
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-3 border-b border-gray-300 pb-1">
             Technical Skills
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
             {skillCategories.map((cat) => (
               <div key={cat.title} className="flex">
                 <span className="font-semibold text-gray-900 w-36 shrink-0">
@@ -144,13 +158,15 @@ const Resume = () => {
               key={exp.id}
               className={idx > 0 ? "mt-5 pt-4 border-t border-gray-200" : ""}
             >
-              <div className="flex flex-wrap justify-between items-baseline">
+              <div className="flex justify-between items-baseline">
                 <h3 className="text-base font-bold text-gray-900">
                   {exp.role} — {exp.company}
                 </h3>
-                <span className="text-xs text-gray-500">{exp.period}</span>
+                <span className="text-xs text-gray-500 whitespace-nowrap ml-4">
+                  {exp.period}
+                </span>
               </div>
-              <div className="flex flex-wrap items-center gap-3 mt-0.5">
+              <div className="flex items-center gap-3 mt-0.5">
                 <span className="text-sm text-gray-500">{exp.type}</span>
                 {exp.website && (
                   <a
@@ -202,7 +218,7 @@ const Resume = () => {
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2 border-b border-gray-300 pb-1">
             Education
           </h2>
-          <div className="flex flex-wrap justify-between items-baseline">
+          <div className="flex justify-between items-baseline">
             <h3 className="text-sm font-bold text-gray-900">
               {education.degree}
             </h3>
@@ -213,6 +229,59 @@ const Resume = () => {
           </p>
         </section>
       </div>
+
+      {/* Print-specific styles */}
+      <style>{`
+        @media print {
+          @page {
+            margin: 0.5in 0.6in;
+            size: letter;
+          }
+
+          /* Hide non-resume elements */
+          .no-print { display: none !important; }
+
+          /* Reset body */
+          body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            margin: 0;
+            padding: 0;
+          }
+
+          /* Resume content fills page */
+          .resume-content {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+
+          /* Keep links styled and clickable */
+          a[href] {
+            color: #4f46e5 !important;
+            text-decoration: underline !important;
+          }
+
+          /* Prevent page breaks inside sections */
+          section { break-inside: avoid; }
+          h2, h3 { break-after: avoid; }
+          ul { break-inside: avoid; }
+
+          /* Tech tags background */
+          .bg-indigo-50 {
+            background-color: #eef2ff !important;
+          }
+
+          /* Ensure icons align with text */
+          svg {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          /* Remove min-height */
+          .min-h-screen { min-height: auto !important; }
+        }
+      `}</style>
     </div>
   );
 };
