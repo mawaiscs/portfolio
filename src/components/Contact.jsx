@@ -124,10 +124,14 @@ const Contact = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm text-slate-400 mb-1.5">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm text-slate-400 mb-1.5"
+                >
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -139,10 +143,14 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-400 mb-1.5">
+                <label
+                  htmlFor="contact-email"
+                  className="block text-sm text-slate-400 mb-1.5"
+                >
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   value={formData.email}
@@ -154,10 +162,14 @@ const Contact = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-400 mb-1.5">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm text-slate-400 mb-1.5"
+                >
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows="5"
                   value={formData.message}

@@ -29,6 +29,25 @@ const Resume = () => {
     };
   }, []);
 
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/resume-download", true);
+    xhr.responseType = "blob";
+    xhr.onload = () => {
+      if (xhr.status === 200 && xhr.response?.size > 0) {
+        const blob = new Blob([xhr.response], { type: "application/pdf" });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "Muhammad_Awais_Resume.pdf";
+        link.click();
+        setTimeout(() => window.URL.revokeObjectURL(url), 5000);
+      }
+    };
+    xhr.send();
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Top Bar — hidden when printing */}
@@ -40,13 +59,12 @@ const Resume = () => {
           >
             <FaArrowLeft /> Back to Portfolio
           </Link>
-          <a
-            href="/Muhammad_Awais_Resume.pdf"
-            download="Muhammad_Awais_Resume.pdf"
+          <button
+            onClick={handleDownload}
             className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors"
           >
             <FaDownload /> Download PDF
-          </a>
+          </button>
         </div>
       </div>
 

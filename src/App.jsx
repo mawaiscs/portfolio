@@ -1,10 +1,10 @@
+import { lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
-import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -14,7 +14,8 @@ import Projects from "./components/Projects";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Resume from "./components/Resume";
+
+const Resume = lazy(() => import("./components/Resume"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,10 +45,18 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Portfolio />} />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center bg-white">
+            <div className="animate-spin h-8 w-8 border-4 border-indigo-600 border-t-transparent rounded-full" />
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Portfolio />} />
+          <Route path="/resume" element={<Resume />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

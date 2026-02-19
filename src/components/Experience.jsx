@@ -36,14 +36,16 @@ const ExperienceCard = ({ exp, index, isInView }) => {
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <a
-              href={exp.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-indigo-600/10 text-indigo-400 hover:bg-indigo-600/20 transition-colors"
-            >
-              <FaExternalLinkAlt size={10} /> Website
-            </a>
+            {exp.website && (
+              <a
+                href={exp.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-indigo-600/10 text-indigo-400 hover:bg-indigo-600/20 transition-colors"
+              >
+                <FaExternalLinkAlt size={10} /> Website
+              </a>
+            )}
             {exp.dashboard && (
               <a
                 href={exp.dashboard}
