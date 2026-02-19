@@ -5,7 +5,6 @@
 ### Senior Software Engineer
 
 📍 Lahore, Pakistan &nbsp;|&nbsp; 📞 +923018768609 &nbsp;|&nbsp; ✉️ muhammadawais.cse@gmail.com
-
 [🔗 LinkedIn](https://www.linkedin.com/in/muhammad-awais-a9392335a/) &nbsp;•&nbsp; [🌐 Portfolio](https://portfolio-mawais.vercel.app)
 
 </div>
@@ -38,35 +37,29 @@ Senior Software Engineer with **3+ years** of experience building **scalable web
 
 > 📅 May 2025 – Present &nbsp;&nbsp;|&nbsp;&nbsp; 🔗 [callvio.co](https://callvio.co) &nbsp;•&nbsp; [Dashboard](https://dashboard.callvio.co)
 
-_Led development of an AI-powered Receptionist App for automating business customer interactions through intelligent voice assistance._
-
-- ✅ Architected a **full-stack AI receptionist platform** handling live customer calls with natural language understanding and automated responses
-- ✅ Engineered a responsive **React frontend** with Firebase integration, achieving **sub-second load times** deployed on Vercel
-- ✅ Designed scalable **Node.js microservices** integrating **Twilio** for voice routing, **Deepgram & Google STT/TTS** for real-time speech processing, and **OpenAI LLM** for conversation intelligence
-- ✅ Implemented **Infobip WebSocket** integration for real-time caller speech capture and Jazz telephony support
-- ✅ Built intelligent **appointment booking**, business FAQ handling, and real-time automated response systems
-- ✅ Set up **CI/CD pipelines** with automated testing; deployed backend on **Google Cloud Run** for auto-scaling
-- ✅ Integrated **Redis** for session management, caching, and real-time data processing ensuring low-latency responses
+- Architected a **full-stack AI receptionist platform** handling live customer calls with NLU and automated responses
+- Engineered a responsive **React frontend** with Firebase, achieving **sub-second load times** on Vercel
+- Designed scalable **Node.js microservices** — **Twilio** (voice routing), **Deepgram & Google STT/TTS** (speech processing), **OpenAI LLM** (conversation intelligence)
+- Implemented **Infobip WebSocket** for real-time caller speech capture and Jazz telephony support
+- Built intelligent **appointment booking**, business FAQ handling, and automated response systems
+- Set up **CI/CD pipelines** with automated testing; deployed on **Google Cloud Run** for auto-scaling
+- Integrated **Redis** for session management, caching, and low-latency real-time data processing
 
 > **Tech:** `React` `Node.js` `Firebase` `Redis` `Twilio` `OpenAI` `Deepgram` `Google TTS/STT` `Infobip` `Cloud Run` `Vercel`
-
-<br>
 
 ### **Senior Software Engineer** &nbsp;—&nbsp; Binary Tech _(DoctorNow)_
 
 > 📅 May 2022 – April 2025 &nbsp;&nbsp;|&nbsp;&nbsp; 🔗 [docnow.ai](https://docnow.ai) &nbsp;•&nbsp; [Live Dashboard](https://live.doctornow.io/login)
 
-_Developed and maintained core features for DoctorNow — a comprehensive telemedicine platform with EHR, real-time consultations, and digital prescriptions._
-
-- ✅ Led **front-end architecture** using Angular with lazy loading, AOT compilation, and optimized bundle sizes
-- ✅ Engineered scalable **backend APIs** with Node.js/Express — modular architecture, middleware pipelines, error handling
-- ✅ Designed and optimized **MongoDB schemas** with indexing, aggregation pipelines, and query optimization for large-scale patient data
-- ✅ Built **real-time chat** modules using Socket.IO for doctor-patient communication
-- ✅ Implemented secure **authentication flows** — JWT, refresh tokens, HTTPS, rate limiting, input sanitization
-- ✅ Integrated **Twilio** (SMS/voice), **Zoom SDK** (video consultations), and **payment gateways**
-- ✅ Developed **digital prescriptions**, video consultation rooms, appointment scheduling, and patient history tracking
-- ✅ **Reduced page load time by 40%** and **increased user engagement by 25%** through optimization and UI revamp
-- ✅ Led **Agile ceremonies** — sprint planning, code reviews, mentoring junior developers, CI/CD management
+- Led **front-end architecture** using Angular — lazy loading, AOT compilation, optimized bundle sizes
+- Engineered scalable **backend APIs** with Node.js/Express — modular architecture, middleware pipelines
+- Optimized **MongoDB schemas** with indexing, aggregation pipelines for large-scale patient data
+- Built **real-time chat** with Socket.IO for doctor-patient communication
+- Implemented secure **auth flows** — JWT, refresh tokens, HTTPS, rate limiting, input sanitization
+- Integrated **Twilio** (SMS/voice), **Zoom SDK** (video consultations), and **payment gateways**
+- Developed **digital prescriptions**, video rooms, appointment scheduling, and patient history tracking
+- **Reduced page load time by 40%** and **increased engagement by 25%** via optimization & UI revamp
+- Led **Agile ceremonies** — sprint planning, code reviews, mentoring juniors, CI/CD management
 
 > **Tech:** `Angular` `Node.js` `Express.js` `MongoDB` `Socket.IO` `JWT` `Twilio` `Zoom SDK` `AWS` `Docker` `Jest`
 
@@ -81,8 +74,6 @@ _Punjab University College of Information Technology (PUCIT), Lahore, Pakistan_
 
 ## 📚 &nbsp; PROFESSIONAL DEVELOPMENT
 
-**Advanced Backend with Node.js**
-`Child Processes & Clustering` `MongoDB Scaling` `Docker & Kubernetes` `WebSockets` `Cryptography & Security` `Worker Threads` `Compression Algorithms`
+**Advanced Backend with Node.js** — `Child Processes & Clustering` `MongoDB Scaling` `Docker & Kubernetes` `WebSockets` `Cryptography & Security` `Worker Threads` `Compression Algorithms`
 
-**Backend with Node.js (Comprehensive)**
-`Node.js Internals` `Streams & Buffers` `TCP/UDP Networking` `Express.js & REST APIs` `MongoDB & Mongoose` `JWT & OAuth` `RBAC & Redis` `Security (XSS, CSRF, CSP)` `AWS S3 & CloudFront` `Stripe & Razorpay` `CI/CD (Nginx, PM2, GitHub Actions)`
+**Backend with Node.js (Comprehensive)** — `Node.js Internals` `Streams & Buffers` `TCP/UDP Networking` `Express.js & REST APIs` `MongoDB & Mongoose` `JWT & OAuth` `RBAC & Redis` `Security (XSS, CSRF, CSP)` `AWS S3 & CloudFront` `Stripe & Razorpay` `CI/CD (Nginx, PM2, GitHub Actions)`
