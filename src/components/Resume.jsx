@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   FaArrowLeft,
@@ -21,9 +21,6 @@ const RESUME_TITLE = "Muhammad Awais - Resume";
 const SITE_TITLE = "Muhammad Awais | Senior Software Engineer";
 
 const Resume = () => {
-  const resumeRef = useRef(null);
-  const [downloading, setDownloading] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = RESUME_TITLE;
@@ -33,30 +30,8 @@ const Resume = () => {
   }, []);
 
   const handleDownload = async () => {
-    if (downloading) return;
-    setDownloading(true);
-    try {
-      const html2pdf = (await import("html2pdf.js")).default;
-      const element = resumeRef.current;
-      const opt = {
-        margin: [0.4, 0.5, 0.4, 0.5],
-        filename: "Muhammad_Awais_Resume.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          letterRendering: true,
-        },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
-        enableLinks: true,
-      };
-      await html2pdf().set(opt).from(element).save();
-    } catch (err) {
-      console.error("PDF download failed:", err);
-    } finally {
-      setDownloading(false);
-    }
+    const { default: generatePDF } = await import("../utils/generateResumePDF");
+    generatePDF({ personalInfo, experiences, skillCategories, education });
   };
 
   return (
@@ -72,17 +47,15 @@ const Resume = () => {
           </Link>
           <button
             onClick={handleDownload}
-            disabled={downloading}
-            className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors"
           >
-            <FaDownload /> {downloading ? "Generating…" : "Download PDF"}
+            <FaDownload /> Download PDF
           </button>
         </div>
       </div>
 
       {/* Resume Content */}
       <div
-        ref={resumeRef}
         className="max-w-4xl mx-auto px-8 py-10"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
