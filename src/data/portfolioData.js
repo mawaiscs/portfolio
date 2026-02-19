@@ -6,9 +6,6 @@ import {
   FaAws,
   FaGitAlt,
   FaPython,
-  FaLinkedin,
-  FaEnvelope,
-  FaPhone,
   FaServer,
   FaCloud,
   FaDatabase,
@@ -48,7 +45,6 @@ export const personalInfo = {
   phone: "+923018768609",
   location: "Lahore, Pakistan",
   linkedin: "https://www.linkedin.com/in/muhammad-awais-a9392335a/",
-  github: "https://github.com/muhammadawaisg",
 };
 
 export const navLinks = [
@@ -319,17 +315,3 @@ export const education = {
   location: "Lahore, Pakistan",
   period: "2018 – 2022",
 };
-
-export const socialLinks = [
-  {
-    name: "LinkedIn",
-    icon: FaLinkedin,
-    url: "https://www.linkedin.com/in/muhammad-awais-a9392335a/",
-  },
-  {
-    name: "Email",
-    icon: FaEnvelope,
-    url: "mailto:muhammadawais.cse@gmail.com",
-  },
-  { name: "Phone", icon: FaPhone, url: "tel:+923018768609" },
-];

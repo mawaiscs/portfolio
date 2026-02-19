@@ -29,11 +29,6 @@ const Resume = () => {
     };
   }, []);
 
-  const handleDownload = async () => {
-    const { default: generatePDF } = await import("../utils/generateResumePDF");
-    generatePDF({ personalInfo, experiences, skillCategories, education });
-  };
-
   return (
     <div className="min-h-screen bg-white text-gray-900">
       {/* Top Bar — hidden when printing */}
@@ -45,12 +40,13 @@ const Resume = () => {
           >
             <FaArrowLeft /> Back to Portfolio
           </Link>
-          <button
-            onClick={handleDownload}
+          <a
+            href="/Muhammad_Awais_Resume.pdf"
+            download="Muhammad_Awais_Resume.pdf"
             className="flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-lg bg-indigo-600 hover:bg-indigo-500 transition-colors"
           >
             <FaDownload /> Download PDF
-          </button>
+          </a>
         </div>
       </div>
 
