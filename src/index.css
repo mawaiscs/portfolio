@@ -38,3 +38,28 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #6366f1;
 }
+
+/* Print styles for Resume page */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+  .resume-content {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Custom xs breakpoint utility */
+@media (min-width: 480px) {
+  .xs\:inline {
+    display: inline !important;
+  }
+  .xs\:hidden {
+    display: none !important;
+  }
+}
