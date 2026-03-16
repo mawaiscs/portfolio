@@ -21,7 +21,7 @@ Senior Software Engineer with **3+ years** of experience building **scalable web
 | Domain                 | Technologies                                                                  |
 | :--------------------- | :---------------------------------------------------------------------------- |
 | **Languages**          | JavaScript, TypeScript, Python                                                |
-| **Frontend**           | React, Angular, Tailwind CSS, Bootstrap, MUI                                  |
+| **Frontend**           | React, Redux Toolkit / RTK Query, Angular, Tailwind CSS, Bootstrap, MUI       |
 | **Backend**            | Node.js, Express.js, REST APIs, Socket.IO                                     |
 | **Databases**          | MongoDB, Firebase, Redis                                                      |
 | **AI & Communication** | OpenAI LLM, Twilio, Deepgram STT/TTS, Google STT/TTS, Infobip                 |
@@ -39,7 +39,7 @@ Senior Software Engineer with **3+ years** of experience building **scalable web
 _Led development of an AI-powered Receptionist App for automating business customer interactions through intelligent voice assistance._
 
 - Architected a **full-stack AI receptionist platform** handling live customer calls with natural language understanding and automated responses
-- Engineered a responsive **React frontend** with Firebase integration, achieving **sub-second load times** deployed on Vercel
+- Engineered a responsive **React frontend** with **Redux Toolkit** for state management, **RTK Query** for efficient API caching, and custom middleware for analytics and logging
 - Designed scalable **Node.js microservices** integrating **Twilio** for voice routing, **Deepgram & Google STT/TTS** for real-time speech processing, and **OpenAI LLM** for conversation intelligence
 - Implemented **Infobip WebSocket** integration for real-time caller speech capture and Jazz telephony support
 - Built intelligent **appointment booking**, business FAQ handling, and real-time automated response systems
@@ -47,7 +47,7 @@ _Led development of an AI-powered Receptionist App for automating business custo
 - Integrated **Redis** for session management, caching, and real-time data processing ensuring low-latency responses
 - Combined telephony, AI, and cloud-native technologies, significantly improving **customer engagement and operational efficiency**
 
-> **Tech:** `React` `Node.js` `Firebase` `Redis` `Twilio` `OpenAI` `Deepgram` `Google TTS/STT` `Infobip` `Cloud Run` `Vercel`
+> **Tech:** `React` `Redux Toolkit` `RTK Query` `Node.js` `Firebase` `Redis` `Twilio` `OpenAI` `Deepgram` `Google TTS/STT` `Infobip` `Cloud Run` `Vercel`
 
 ### **Senior Software Engineer** &nbsp;—&nbsp; Binary Tech _(DoctorNow)_
 

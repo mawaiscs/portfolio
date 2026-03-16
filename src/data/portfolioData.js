@@ -21,6 +21,7 @@ import {
   SiTailwindcss,
   SiBootstrap,
   SiMui,
+  SiRedux,
   SiExpress,
   SiNginx,
   SiVercel,
@@ -71,7 +72,7 @@ export const experiences = [
       "Led the development of an AI-powered Receptionist App that enables businesses to automate customer interactions through intelligent voice assistance.",
     highlights: [
       "Architected and built a full-stack AI receptionist platform handling live customer calls with natural language understanding and automated responses",
-      "Engineered a responsive React frontend with Firebase integration, achieving sub-second load times deployed on Vercel",
+      "Engineered a responsive React frontend with Redux Toolkit for state management, RTK Query for efficient API caching, and custom middleware for analytics and logging",
       "Designed scalable Node.js microservices integrating Twilio for voice routing, Deepgram & Google STT/TTS for real-time speech processing, and OpenAI LLM for conversation intelligence",
       "Implemented Infobip WebSocket integration for real-time caller speech capture and Jazz telephony support",
       "Built intelligent appointment booking, business FAQ handling, and real-time automated response systems",
@@ -81,6 +82,8 @@ export const experiences = [
     ],
     tech: [
       "React",
+      "Redux Toolkit",
+      "RTK Query",
       "Node.js",
       "Firebase",
       "Redis",
@@ -141,6 +144,7 @@ export const skillCategories = [
     color: "text-cyan-400",
     skills: [
       { name: "React", icon: FaReact },
+      { name: "Redux Toolkit / RTK Query", icon: SiRedux },
       { name: "Angular", icon: FaAngular },
       { name: "TypeScript", icon: SiTypescript },
       { name: "JavaScript", icon: SiJavascript },
@@ -226,6 +230,7 @@ export const projects = [
     },
     features: [
       "AI-powered voice conversations with OpenAI LLM",
+      "Redux Toolkit with RTK Query for state & API caching",
       "Real-time speech processing with Deepgram & Google STT/TTS",
       "Twilio & Infobip telephony integration",
       "Automated appointment booking system",
@@ -234,6 +239,8 @@ export const projects = [
     ],
     tech: [
       "React",
+      "Redux Toolkit",
+      "RTK Query",
       "Node.js",
       "Firebase",
       "Redis",
