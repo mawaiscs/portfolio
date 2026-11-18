@@ -33,7 +33,7 @@ const Contact = () => {
             />
             <div className="relative">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-subtle">
-                06 — Contact
+                07 — Contact
               </p>
               <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-fg text-balance sm:text-5xl md:text-6xl">
                 Have a product to build?{" "}

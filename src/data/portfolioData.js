@@ -16,6 +16,9 @@ import {
   FaTachometerAlt,
   FaBolt,
   FaCode,
+  FaBrain,
+  FaRobot,
+  FaSearch,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -39,6 +42,12 @@ import {
   SiZoom,
   SiWhatsapp,
   SiGithubactions,
+  SiNextdotjs,
+  SiZod,
+  SiLinux,
+  SiOpentelemetry,
+  SiQdrant,
+  SiCloudflare,
 } from "react-icons/si";
 import { TbBrandOpenai, TbBrandTwilio } from "react-icons/tb";
 
@@ -105,14 +114,14 @@ export const formatDuration = (start, end) => {
 export const personalInfo = {
   name: "Muhammad Awais",
   title: "Senior Software Engineer",
-  specialty: "Full-Stack · Node.js · React · Angular · Cloud",
+  specialty: "Full-Stack · Node.js · React · Next.js · Angular · Cloud",
   tagline:
     "I design, build and ship reliable web products — from database to interface.",
   get description() {
     return `Senior full-stack software engineer with ${yearsOfExperience()}+ years building production SaaS with Node.js, React, Angular and TypeScript. I own features end to end — APIs, data models, front-end architecture, real-time features, third-party integrations and cloud deployment — across healthcare and AI products.`;
   },
   get resumeSummary() {
-    return `Senior Full-Stack Software Engineer with ${yearsOfExperience()}+ years of experience designing, building and scaling production web applications with Node.js, TypeScript, React and Angular. Owns features end to end: REST APIs and data models (MongoDB, Redis), front-end architecture and performance, real-time features (WebSockets), third-party integrations (payments, telephony, video, LLMs) and cloud deployment on AWS and Google Cloud. Delivered a 40% faster page load and 25% higher engagement on a US healthcare SaaS, and built core services for a multi-channel AI communications platform. Comfortable leading sprints, reviewing code and mentoring engineers.`;
+    return `Senior Full-Stack Software Engineer with ${yearsOfExperience()}+ years of experience designing, building and scaling production web applications with Node.js, TypeScript, React, Next.js and Angular. Owns features end to end: REST APIs and data models (MongoDB, Redis), front-end architecture and performance, real-time features (WebSockets), third-party integrations (payments, telephony, video), AI features (LLM APIs, RAG with embeddings and vector databases) and cloud deployment on AWS and Google Cloud. Strong grounding in Node.js internals (streams, clustering, worker threads), type-level TypeScript and computer networking. Delivered a 40% faster page load and 25% higher engagement on a US healthcare SaaS, and built core services for a multi-channel AI communications platform. Comfortable leading sprints, reviewing code and mentoring engineers.`;
   },
   availability: "Open to senior full-stack & backend roles",
   email: "muhammadawais.cse@gmail.com",
@@ -136,11 +145,20 @@ export const heroContent = {
 // Shown in the hero "profile" card.
 export const profileCard = {
   role: "Senior Full-Stack Engineer",
-  stack: ["TypeScript", "Node.js", "React", "Angular", "MongoDB", "AWS / GCP"],
+  stack: [
+    "TypeScript",
+    "Node.js",
+    "React",
+    "Next.js",
+    "Angular",
+    "MongoDB",
+    "AWS / GCP",
+  ],
   focus: [
     "APIs & data modelling",
     "Front-end architecture",
     "Real-time systems",
+    "AI features & RAG",
     "Integrations & cloud",
   ],
   domains: ["Healthcare SaaS", "AI / communications", "B2B dashboards"],
@@ -162,13 +180,14 @@ export const metrics = [
 export const about = {
   paragraphs: [
     "I'm a senior full-stack engineer who likes owning a feature from the first schema to the last pixel. I've spent my career building production SaaS — a clinical EHR platform for US healthcare providers and a multi-channel communications platform — with Node.js, TypeScript, React and Angular.",
-    "Most of my work sits where products get hard: data models that stay fast as they grow, APIs other teams can rely on, front ends that load quickly on any device, real-time features, and integrations with payments, telephony, video and AI services. I care about clean architecture, sensible testing and shipping in small, safe steps.",
+    "Most of my work sits where products get hard: data models that stay fast as they grow, APIs other teams can rely on, front ends that load quickly on any device, real-time features, and integrations with payments, telephony, video and AI services — including LLM-powered features and retrieval-augmented generation (RAG) over a product's own data. I care about clean architecture, sensible testing and shipping in small, safe steps.",
     "I also enjoy the team side of engineering — running sprint ceremonies, reviewing code and mentoring junior developers so the whole team ships better.",
   ],
   focus: [
     "Full-stack web apps (Node.js · React · Angular)",
     "API design, data modelling & performance",
     "Real-time features & third-party integrations",
+    "AI features: LLM APIs, RAG & vector search",
     "Cloud deployment, CI/CD & code quality",
   ],
 };
@@ -183,27 +202,27 @@ export const services = [
   {
     icon: FaServer,
     title: "Backend & API engineering",
-    text: "Scalable Node.js/Express services, REST APIs, auth and role-based access, background jobs and well-indexed MongoDB/Redis data layers.",
+    text: "Scalable Node.js/Express services, REST APIs, auth and role-based access, background jobs and well-indexed MongoDB/Redis data layers, scaled with clustering and worker threads.",
   },
   {
     icon: FaTachometerAlt,
     title: "Front-end architecture & performance",
-    text: "Maintainable React and Angular apps with solid state management, accessible UI and measurable speed gains (lazy loading, caching, bundle size).",
+    text: "Maintainable React, Next.js and Angular apps with solid state management, accessible UI and measurable speed gains (SSR, lazy loading, caching).",
   },
   {
     icon: FaBolt,
-    title: "Real-time features",
-    text: "Chat, live updates, notifications and streaming with WebSockets/Socket.IO — built to handle reconnects, ordering and scale.",
+    title: "Real-time features & integrations",
+    text: "Chat, live updates and notifications with WebSockets/Socket.IO, plus payments, SMS/voice, video and messaging APIs (Stripe, Razorpay, Twilio, Zoom, WhatsApp) wired in safely.",
   },
   {
-    icon: FaPlug,
-    title: "Third-party integrations",
-    text: "Payments, SMS/voice, video, messaging and LLM APIs (Stripe, Twilio, Zoom SDK, WhatsApp, OpenAI) wired in safely with retries and monitoring.",
+    icon: FaBrain,
+    title: "AI features & RAG",
+    text: "Practical AI inside your product: LLM APIs, prompt design, embeddings and RAG pipelines (chunking, vector search with Qdrant, retrieval) grounded in your own data.",
   },
   {
     icon: FaCloud,
     title: "Cloud, DevOps & delivery",
-    text: "Docker, CI/CD pipelines and deployments on AWS, Google Cloud Run and Vercel — plus the logging and alerts that keep production calm.",
+    text: "Docker, CI/CD pipelines and deployments on AWS (incl. Lambda and S3), Google Cloud Run and Vercel — plus the logs, metrics and traces that keep production calm.",
   },
   {
     icon: FaUsers,
@@ -213,7 +232,7 @@ export const services = [
   {
     icon: FaShieldAlt,
     title: "Security & reliability",
-    text: "JWT/refresh-token auth, rate limiting, input validation, HTTPS everywhere and sensible error handling for sensitive data such as patient records.",
+    text: "JWT/refresh-token auth, RBAC, rate limiting, XSS/CSRF/CSP protection, input validation and HTTPS — built for sensitive data such as patient records.",
   },
 ];
 
@@ -243,6 +262,7 @@ export const navLinks = [
   { name: "Experience", to: "experience" },
   { name: "Projects", to: "projects" },
   { name: "Skills", to: "skills" },
+  { name: "Education", to: "education" },
   { name: "Contact", to: "contact" },
 ];
 
@@ -347,22 +367,26 @@ export const skillCategories = [
     icon: FaReact,
     skills: [
       { name: "React", icon: FaReact },
+      {
+        name: "Next.js (App Router, SSR/ISR, Server Actions)",
+        icon: SiNextdotjs,
+      },
       { name: "Angular", icon: FaAngular },
-      { name: "TypeScript", icon: SiTypescript },
-      { name: "JavaScript (ES2023+)", icon: SiJavascript },
+      { name: "TypeScript (generics, type-level, Zod)", icon: SiTypescript },
+      { name: "JavaScript (ES2023+, async, OOP)", icon: SiJavascript },
       { name: "Redux Toolkit / RTK Query", icon: SiRedux },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
-      { name: "MUI / Bootstrap", icon: SiMui },
+      { name: "Tailwind CSS / MUI", icon: SiTailwindcss },
     ],
   },
   {
     title: "Backend",
     icon: FaServer,
     skills: [
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express.js", icon: SiExpress },
-      { name: "REST API design", icon: FaServer },
-      { name: "Auth (JWT, OAuth, RBAC)", icon: FaShieldAlt },
+      { name: "Node.js (event loop, streams, buffers)", icon: FaNodeJs },
+      { name: "Express.js & REST API design", icon: SiExpress },
+      { name: "Auth: JWT, OAuth, sessions, RBAC", icon: FaShieldAlt },
+      { name: "Clustering, worker threads, child processes", icon: FaBolt },
+      { name: "Runtime validation (Zod)", icon: SiZod },
       { name: "Python", icon: FaPython },
     ],
   },
@@ -370,8 +394,9 @@ export const skillCategories = [
     title: "Data",
     icon: FaDatabase,
     skills: [
-      { name: "MongoDB (indexing, aggregation)", icon: SiMongodb },
-      { name: "Redis (caching, sessions)", icon: SiRedis },
+      { name: "MongoDB & Mongoose (MVC)", icon: SiMongodb },
+      { name: "MongoDB indexing, aggregation & scaling", icon: SiMongodb },
+      { name: "Redis (caching, sessions, rate limits)", icon: SiRedis },
       { name: "Firebase / Firestore", icon: SiFirebase },
     ],
   },
@@ -380,35 +405,48 @@ export const skillCategories = [
     icon: FaPlug,
     skills: [
       { name: "WebSockets / Socket.IO", icon: SiSocketdotio },
+      { name: "Payments: Stripe & Razorpay", icon: SiStripe },
       { name: "Twilio (SMS, voice)", icon: TbBrandTwilio },
-      { name: "Payments (Stripe & gateways)", icon: SiStripe },
       { name: "Zoom Video SDK", icon: SiZoom },
       { name: "WhatsApp Business API", icon: SiWhatsapp },
-      { name: "OpenAI / LLM APIs", icon: TbBrandOpenai },
+    ],
+  },
+  {
+    title: "AI Engineering",
+    icon: FaBrain,
+    skills: [
+      { name: "OpenAI / LLM APIs & tool calling", icon: TbBrandOpenai },
+      { name: "RAG pipelines (chunking, retrieval)", icon: FaSearch },
+      { name: "Embeddings & vector databases (Qdrant)", icon: SiQdrant },
+      { name: "Prompt & context engineering", icon: FaRobot },
+      {
+        name: "AI-assisted dev workflow (PRDs, design docs, agents)",
+        icon: FaCode,
+      },
     ],
   },
   {
     title: "Cloud & DevOps",
     icon: FaCloud,
     skills: [
-      { name: "AWS (EC2, S3, CloudFront)", icon: FaAws },
+      { name: "AWS: EC2, S3, CloudFront, Lambda", icon: FaAws },
       { name: "Google Cloud Run", icon: SiGooglecloud },
-      { name: "Docker", icon: FaDocker },
-      { name: "Kubernetes", icon: SiKubernetes },
+      { name: "Docker & Kubernetes", icon: FaDocker },
       { name: "CI/CD (GitHub Actions)", icon: SiGithubactions },
-      { name: "Nginx", icon: SiNginx },
-      { name: "Vercel", icon: SiVercel },
+      { name: "Nginx, PM2, Vercel & Cloudflare R2", icon: SiCloudflare },
+      { name: "Observability: logs, metrics, traces", icon: SiOpentelemetry },
     ],
   },
   {
-    title: "Practices & Tools",
+    title: "Foundations & Practices",
     icon: FaCode,
     skills: [
-      { name: "Testing (Jest)", icon: SiJest },
-      { name: "Git / code review", icon: FaGitAlt },
-      { name: "Postman / API testing", icon: SiPostman },
-      { name: "Jira · Agile / Scrum", icon: SiJira },
-      { name: "Mentoring & documentation", icon: FaUsers },
+      { name: "Networking: TCP/IP, DNS, HTTP", icon: FaCloud },
+      { name: "Linux, terminal & OS basics", icon: SiLinux },
+      { name: "Security: XSS, CSRF, CSP, crypto", icon: FaShieldAlt },
+      { name: "Regular expressions", icon: FaCode },
+      { name: "Testing (Jest) & code review", icon: SiJest },
+      { name: "Git, Jira, Agile / Scrum", icon: FaGitAlt },
     ],
   },
 ];
@@ -419,23 +457,37 @@ export const resumeSkills = [
   {
     label: "Frontend",
     value:
-      "React, Angular, Redux Toolkit, RTK Query, Tailwind CSS, MUI, Bootstrap",
+      "React, Next.js (App Router, SSR/ISR, Server Actions), Angular, Redux Toolkit, RTK Query, Tailwind CSS, MUI",
   },
   {
     label: "Backend",
     value:
-      "Node.js, Express.js, REST APIs, authentication (JWT, OAuth, RBAC), microservices",
+      "Node.js (event loop, streams, clustering, worker threads), Express.js, REST APIs, JWT/OAuth/RBAC, Zod",
   },
-  { label: "Data", value: "MongoDB, Redis, Firebase / Firestore" },
+  {
+    label: "Data",
+    value:
+      "MongoDB (indexing, aggregation, scaling), Mongoose, Redis, Firebase / Firestore",
+  },
   {
     label: "Real-time & Integrations",
     value:
-      "WebSockets, Socket.IO, Twilio, Stripe & payment gateways, Zoom SDK, WhatsApp Business API, OpenAI / LLM APIs",
+      "WebSockets, Socket.IO, Stripe, Razorpay, Twilio, Zoom SDK, WhatsApp Business API",
+  },
+  {
+    label: "AI Engineering",
+    value:
+      "OpenAI / LLM APIs, RAG pipelines (chunking, embeddings, retrieval), vector databases (Qdrant), prompt & context engineering, AI-assisted development",
   },
   {
     label: "Cloud & DevOps",
     value:
-      "AWS (EC2, S3, CloudFront), Google Cloud Run, Docker, Kubernetes, Nginx, Vercel, CI/CD",
+      "AWS (EC2, S3, CloudFront, Lambda), Google Cloud Run, Docker, Kubernetes, Nginx, PM2, Vercel, CI/CD, observability",
+  },
+  {
+    label: "Foundations",
+    value:
+      "Computer networking (TCP/IP, DNS, HTTP), Linux, web security (XSS, CSRF, CSP), cryptography, RegEx",
   },
   {
     label: "Practices",
@@ -515,33 +567,72 @@ export const projects = [
   },
 ];
 
+// Areas of deep, hands-on study (presented as abilities, not course names).
 export const coursework = [
   {
-    title: "Advanced Backend with Node.js",
+    title: "AI engineering & RAG",
     topics: [
-      "Child Processes & Clustering",
-      "MongoDB Scaling & Optimization",
-      "Docker & Kubernetes",
-      "WebSockets & Real-Time Communication",
-      "Cryptography & Security",
-      "Worker Threads",
-      "Compression Algorithms",
+      "How LLMs work (tokens, embeddings, transformers)",
+      "RAG architecture",
+      "Chunking strategies",
+      "Embeddings & vector databases",
+      "Qdrant vector search",
+      "Query pipelines",
+      "AI-native dev workflow",
+      "AI media pipelines",
     ],
   },
   {
-    title: "Backend with Node.js (Comprehensive)",
+    title: "Node.js internals & scaling",
     topics: [
-      "Node.js Internals & Event Loop",
-      "Streams & Buffers",
-      "Networking (TCP/UDP)",
-      "Express.js & REST",
-      "MongoDB & Mongoose",
-      "Auth (JWT, OAuth)",
-      "RBAC & Redis",
-      "Security (XSS, CSRF, CSP)",
-      "AWS S3 & CloudFront",
-      "Payments (Stripe, Razorpay)",
-      "CI/CD (Nginx, PM2, GitHub Actions)",
+      "Event loop & libuv",
+      "Streams & buffers",
+      "EventEmitter patterns",
+      "Child processes",
+      "Clustering",
+      "Worker threads",
+      "Compression",
+      "Cryptography",
+    ],
+  },
+  {
+    title: "Production backends",
+    topics: [
+      "MVC with Mongoose",
+      "Auth & RBAC",
+      "Redis",
+      "Security hardening",
+      "AWS S3 storage",
+      "Stripe & Razorpay",
+      "AWS Lambda (serverless)",
+      "CI/CD & deployment",
+      "Observability",
+    ],
+  },
+  {
+    title: "TypeScript at depth",
+    topics: [
+      "Generics",
+      "Type-level programming",
+      "Utility types",
+      "Narrowing",
+      "Declaration files",
+      "Zod runtime validation",
+      "Decorators & OOP",
+      "Production TS setup",
+    ],
+  },
+  {
+    title: "Web platform & networking",
+    topics: [
+      "TCP/IP & OSI",
+      "DNS",
+      "HTTP under the hood",
+      "IP addressing & ports",
+      "AWS networking",
+      "Next.js rendering & Server Actions",
+      "Modern JavaScript",
+      "Regular expressions",
     ],
   },
 ];

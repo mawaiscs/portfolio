@@ -1,35 +1,38 @@
 # LinkedIn profile copy
 
 Generated from `src/data/portfolioData.js` (`node scripts/linkedin-copy.mjs`), so the profile and the portfolio say the same thing.
-The positioning is a general **Senior Full-Stack Software Engineer**. AI and communications work is one capability, not the headline.
+The positioning is a general **Senior Full-Stack Software Engineer**. AI and RAG appear as one capability, not the headline.
 
 > Public posts are never published automatically. Post ideas stay drafts for you to publish yourself.
 
 ## Headline
 ```
-Senior Full-Stack Software Engineer | Node.js · TypeScript · React · Angular | Scalable Web Apps, APIs & Real-time Systems | AWS · Google Cloud
+Senior Full-Stack Software Engineer | Node.js · TypeScript · React · Next.js · Angular | Scalable Web Apps, APIs, Real-time & AI (RAG) | AWS · Google Cloud
 ```
 
 ## About
 ```
 I design, build and ship reliable web products — from the database and APIs to the interface and the cloud.
 
-Senior Full-Stack Software Engineer with 4+ years building production SaaS with Node.js, TypeScript, React and Angular, across healthcare and communications platforms.
+Senior Full-Stack Software Engineer with 4+ years building production SaaS with Node.js, TypeScript, React, Next.js and Angular, across healthcare and communications platforms.
 
 How I can help:
 → Full-stack product development: data model, API, UI, tests and deployment
-→ Backend & API engineering: Node.js/Express, REST, auth & RBAC, MongoDB/Redis
-→ Front-end architecture & performance: React, Angular, state management, faster load times
+→ Backend & API engineering: Node.js/Express, REST, auth & RBAC, MongoDB/Redis, scaled with clustering and worker threads
+→ Front-end architecture & performance: React, Next.js, Angular, SSR, state management, faster load times
 → Real-time features: chat, live updates and notifications with WebSockets/Socket.IO
-→ Third-party integrations: payments, SMS/voice, video, messaging and LLM APIs
-→ Cloud & delivery: Docker, CI/CD, AWS, Google Cloud Run, Vercel
+→ Third-party integrations: Stripe, Razorpay, Twilio, Zoom, WhatsApp and other APIs
+→ AI features: LLM APIs, prompt design, RAG pipelines, embeddings and vector search (Qdrant)
+→ Cloud & delivery: Docker, CI/CD, AWS (EC2, S3, Lambda), Google Cloud Run, Vercel, observability
 → Team leadership: sprint planning, code reviews and mentoring
 
 Highlights:
 • Cut page load time by 40% and raised user engagement by 25% on a US healthcare EHR platform
 • Built real-time services, a multi-channel messaging layer and usage-based billing for a SaaS communications platform
 
-Core stack: TypeScript · Node.js · Express · React · Angular · Redux Toolkit · MongoDB · Redis · Socket.IO · AWS · Google Cloud · Docker
+Strong foundations: Node.js internals (event loop, streams, worker threads), type-level TypeScript, computer networking (TCP/IP, DNS, HTTP) and web security.
+
+Core stack: TypeScript · Node.js · Express · React · Next.js · Angular · Redux Toolkit · MongoDB · Redis · Socket.IO · OpenAI · Qdrant · AWS · Google Cloud · Docker
 
 📬 Open to senior full-stack and backend roles (remote, hybrid or Lahore): muhammadawais.cse@gmail.com
 🌐 Portfolio & resume: https://portfolio-mawais.vercel.app
@@ -66,11 +69,14 @@ Tech: Angular · TypeScript · Node.js · Express.js · MongoDB · Socket.IO · 
 ```
 
 ## Top 5 skills
-Node.js · React.js · TypeScript · Angular · Full-Stack Development
+Node.js · React.js · TypeScript · Angular · Software Architecture
+
+## Skills to have on the profile
+Next.js · Retrieval-Augmented Generation (RAG) · Vector Databases · Prompt Engineering · Generative AI · Amazon S3 · AWS Lambda · Computer Networking · Stripe · Regular Expressions · Full-Stack Development
 
 ## Featured
+- Portfolio link: https://portfolio-mawais.vercel.app
 - Resume (PDF): `public/Muhammad_Awais_Resume.pdf`
-- Portfolio link: https://portfolio-mawais.vercel.app (add once the latest version is deployed so LinkedIn can read the preview)
 
 ## Banner
 `linkedin-banner.png` (1584×396)

@@ -1,6 +1,6 @@
 // Writes Muhammad_Awais_Resume.md from src/data/portfolioData.js (single source of truth).
 import { writeFileSync } from "node:fs";
-import { personalInfo as p, experiences, resumeSkills, education } from "../src/data/portfolioData.js";
+import { personalInfo as p, experiences, resumeSkills, education, coursework } from "../src/data/portfolioData.js";
 
 const strip = (u) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 const lines = [
@@ -21,6 +21,8 @@ for (const e of experiences) {
 }
 lines.push("", "## Skills");
 resumeSkills.forEach((s) => lines.push(`- **${s.label}:** ${s.value}`));
+lines.push("", "## Areas of Deep Study");
+coursework.forEach((c) => lines.push(`- **${c.title}:** ${c.topics.join(", ")}`));
 lines.push("", "## Education", `**${education.degree}** — ${education.institution}, ${education.location} (${education.period})`, "");
 writeFileSync("Muhammad_Awais_Resume.md", lines.join("\n"));
 console.log("Muhammad_Awais_Resume.md written");

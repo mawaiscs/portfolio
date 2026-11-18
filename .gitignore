@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 .env*.local
+
+# Local tool state (MiMo Code), not part of the project
+.mimocode/

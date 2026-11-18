@@ -44,42 +44,36 @@ const lines = [
     <Key>engineer</Key> <P>=</P> <P>{"{"}</P>
   </>,
   <>
-    {"  "}
     <Key>name</Key>
     <P>: </P>
     <Str>{personalInfo.name}</Str>
     <P>,</P>
   </>,
   <>
-    {"  "}
     <Key>role</Key>
     <P>: </P>
     <Str>{profileCard.role}</Str>
     <P>,</P>
   </>,
   <>
-    {"  "}
     <Key>stack</Key>
     <P>: </P>
     {list(profileCard.stack)}
     <P>,</P>
   </>,
   <>
-    {"  "}
     <Key>focus</Key>
     <P>: </P>
     {list(profileCard.focus)}
     <P>,</P>
   </>,
   <>
-    {"  "}
     <Key>domains</Key>
     <P>: </P>
     {list(profileCard.domains)}
     <P>,</P>
   </>,
   <>
-    {"  "}
     <Key>openTo</Key>
     <P>: </P>
     <Str>{personalInfo.workPreference}</Str>
@@ -117,30 +111,42 @@ const ProfileCard = () => {
           </span>
         </div>
         <pre
-          className="min-h-[300px] overflow-x-auto px-5 py-5 font-mono text-[12.5px] leading-[1.9] text-muted sm:text-[13px]"
+          className="min-h-[300px] overflow-x-auto px-4 py-5 font-mono text-[12.5px] leading-[1.9] text-muted sm:text-[13px]"
           aria-label={`${personalInfo.name}, ${profileCard.role}. Stack: ${profileCard.stack.join(", ")}.`}
         >
-          {lines.map((l, i) => (
-            <div
-              key={i}
-              className={`whitespace-pre-wrap transition-all duration-300 ${
-                i < shown
-                  ? "translate-x-0 opacity-100"
-                  : "-translate-x-1.5 opacity-0"
-              }`}
-            >
-              <span className="mr-4 inline-block w-4 select-none text-right text-subtle/60">
-                {i + 1}
-              </span>
-              {l}
-              {i === Math.min(shown, lines.length) - 1 && (
+          {lines.map((l, i) => {
+            const nested = i > 0 && i < lines.length - 1;
+            return (
+              <div
+                key={i}
+                className={`grid grid-cols-[1.75rem_1fr] transition-all duration-300 ${
+                  i < shown
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-1.5 opacity-0"
+                }`}
+              >
+                <span className="select-none pr-3 text-right text-subtle/60">
+                  {i + 1}
+                </span>
+                {/* Hanging indent: wrapped text lines up under the content, never under the line number. */}
                 <span
-                  className="ml-0.5 inline-block h-4 w-[7px] translate-y-[3px] animate-pulse bg-accent"
-                  aria-hidden="true"
-                />
-              )}
-            </div>
-          ))}
+                  className="whitespace-pre-wrap break-words"
+                  style={{
+                    paddingLeft: nested ? "4ch" : "2ch",
+                    textIndent: "-2ch",
+                  }}
+                >
+                  {l}
+                  {i === Math.min(shown, lines.length) - 1 && (
+                    <span
+                      className="ml-0.5 inline-block h-4 w-[7px] translate-y-[3px] animate-pulse bg-accent"
+                      aria-hidden="true"
+                    />
+                  )}
+                </span>
+              </div>
+            );
+          })}
         </pre>
         <div className="flex items-center justify-between border-t border-line px-5 py-3 font-mono text-[11px] text-subtle">
           <span className="flex items-center gap-1.5">

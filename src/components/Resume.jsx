@@ -6,6 +6,7 @@ import {
   experiences,
   resumeSkills,
   education,
+  coursework,
 } from "../data/portfolioData";
 
 const FILE_NAME = "Muhammad_Awais_Resume";
@@ -159,10 +160,23 @@ const Resume = () => {
           <dl className="space-y-0.5">
             {resumeSkills.map((s) => (
               <div key={s.label} className="flex flex-col sm:flex-row">
-                <dt className="font-semibold text-gray-900 sm:w-44 shrink-0">
+                <dt className="font-semibold text-gray-900 sm:w-52 shrink-0 sm:pr-3">
                   {s.label}:
                 </dt>
                 <dd className="text-gray-800">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Section>
+
+        <Section title="Areas of Deep Study">
+          <dl className="space-y-0.5">
+            {coursework.map((c) => (
+              <div key={c.title} className="flex flex-col sm:flex-row">
+                <dt className="font-semibold text-gray-900 sm:w-52 shrink-0 sm:pr-3">
+                  {c.title}:
+                </dt>
+                <dd className="text-gray-800">{c.topics.join(", ")}</dd>
               </div>
             ))}
           </dl>

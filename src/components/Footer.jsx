@@ -10,9 +10,13 @@ const Footer = () => (
     <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.5fr_1fr_1fr]">
       <div>
         <div className="flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-fg font-mono text-xs font-medium text-bg">
-            MA
-          </span>
+          <img
+            src="/favicon.svg"
+            alt=""
+            width="32"
+            height="32"
+            className="h-8 w-8 rounded-lg"
+          />
           <span className="font-medium text-fg">{personalInfo.name}</span>
         </div>
         <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">

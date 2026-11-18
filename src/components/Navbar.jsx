@@ -73,9 +73,13 @@ const Navbar = () => {
             className="group flex items-center gap-2.5"
             aria-label="Back to top"
           >
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-fg text-bg font-mono text-xs font-medium transition-transform group-hover:-rotate-6">
-              MA
-            </span>
+            <img
+              src="/favicon.svg"
+              alt=""
+              width="32"
+              height="32"
+              className="h-8 w-8 rounded-lg transition-transform group-hover:-rotate-6"
+            />
             <span className="hidden sm:block text-sm font-medium text-fg">
               {personalInfo.name}
             </span>

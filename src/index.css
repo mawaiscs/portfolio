@@ -193,6 +193,20 @@ section[id] {
 }
 
 @media print {
+  /* Always print light, even when the site is in dark mode, and never
+     capture a half-finished colour transition. */
+  :root,
+  .dark {
+    --bg: #ffffff;
+    --text: #000000;
+    color-scheme: light;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
   .no-print {
     display: none !important;
   }

@@ -1,38 +1,56 @@
+import { FaGraduationCap } from "react-icons/fa";
 import { education, coursework } from "../data/portfolioData";
-import { Reveal } from "./ui";
+import { Chip, Reveal, SectionHeader, SpotlightCard } from "./ui";
 
 const Education = () => (
-  <section id="education" className="pb-24 md:pb-32">
+  <section id="education" className="py-24 md:py-32">
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
-      <div className="grid gap-10 border-t border-line pt-14 lg:grid-cols-[220px_1fr] lg:gap-12">
+      <SectionHeader
+        index="06"
+        label="Education & growth"
+        title="Strong fundamentals, always deepening."
+        intro="A computer science degree, plus hundreds of hours of hands-on study in the areas that make production systems fast, secure and scalable."
+      />
+
+      <div className="grid gap-4 lg:grid-cols-3">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-subtle">
-            Education
-          </p>
-        </Reveal>
-        <div className="grid gap-10 md:grid-cols-2">
-          <Reveal>
-            <h3 className="text-xl font-semibold tracking-tight text-fg">
+          <SpotlightCard className="h-full p-6">
+            <span className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-surface-2 text-accent-text">
+              <FaGraduationCap size={16} />
+            </span>
+            <h3 className="mt-5 text-lg font-semibold leading-snug text-fg">
               {education.degree}
             </h3>
-            <p className="mt-2 text-muted">{education.institution}</p>
-            <p className="mt-1 font-mono text-xs text-subtle">
+            <p className="mt-2 text-sm text-muted">{education.institution}</p>
+            <p className="mt-3 font-mono text-xs text-subtle">
               {education.location} · {education.period}
             </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h3 className="text-sm font-medium text-fg">Continued learning</h3>
-            <ul className="mt-3 space-y-4">
-              {coursework.map((c) => (
-                <li key={c.title}>
-                  <p className="text-sm text-muted">{c.title}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-subtle">
-                    {c.topics.join(" · ")}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          </SpotlightCard>
+        </Reveal>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:col-span-2">
+          {coursework.map((c, i) => (
+            <Reveal
+              key={c.title}
+              delay={(i % 2) * 0.06}
+              className={
+                i === coursework.length - 1 && coursework.length % 2
+                  ? "sm:col-span-2"
+                  : ""
+              }
+            >
+              <SpotlightCard className="h-full p-6">
+                <h3 className="font-semibold text-fg">{c.title}</h3>
+                <ul className="mt-4 flex flex-wrap gap-1.5">
+                  {c.topics.map((t) => (
+                    <li key={t}>
+                      <Chip>{t}</Chip>
+                    </li>
+                  ))}
+                </ul>
+              </SpotlightCard>
+            </Reveal>
+          ))}
         </div>
       </div>
     </div>
