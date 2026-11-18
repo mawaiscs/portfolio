@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link as RouterLink } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
-import {
-  FiArrowDown,
-  FiArrowUpRight,
-  FiMail,
-  FiPhoneCall,
-} from "react-icons/fi";
+import { FiArrowDown, FiArrowUpRight, FiMail } from "react-icons/fi";
 import {
   personalInfo,
   heroContent,
   metrics,
-  demoCall,
+  profileCard,
 } from "../data/portfolioData";
-import { VoiceWave } from "./ui";
 import { btn } from "./buttons";
 
 const EASE = [0.21, 0.47, 0.32, 0.98];
@@ -24,28 +18,88 @@ const fadeUp = (delay) => ({
   transition: { duration: 0.7, delay, ease: EASE },
 });
 
-/** Illustrative live-call card: shows the problems Callvio's agents solve. */
-const CallDemo = () => {
+/* Editor-style "profile" card, written line by line like code. */
+const Str = ({ children }) => (
+  <span className="text-accent-text">"{children}"</span>
+);
+const Key = ({ children }) => <span className="text-fg">{children}</span>;
+const P = ({ children }) => <span className="text-subtle">{children}</span>;
+
+const list = (items) => (
+  <>
+    <P>[</P>
+    {items.map((s, i) => (
+      <span key={s}>
+        <Str>{s}</Str>
+        {i < items.length - 1 && <P>, </P>}
+      </span>
+    ))}
+    <P>]</P>
+  </>
+);
+
+const lines = [
+  <>
+    <span className="text-[#c084fc] dark:text-[#d8b4fe]">const</span>{" "}
+    <Key>engineer</Key> <P>=</P> <P>{"{"}</P>
+  </>,
+  <>
+    {"  "}
+    <Key>name</Key>
+    <P>: </P>
+    <Str>{personalInfo.name}</Str>
+    <P>,</P>
+  </>,
+  <>
+    {"  "}
+    <Key>role</Key>
+    <P>: </P>
+    <Str>{profileCard.role}</Str>
+    <P>,</P>
+  </>,
+  <>
+    {"  "}
+    <Key>stack</Key>
+    <P>: </P>
+    {list(profileCard.stack)}
+    <P>,</P>
+  </>,
+  <>
+    {"  "}
+    <Key>focus</Key>
+    <P>: </P>
+    {list(profileCard.focus)}
+    <P>,</P>
+  </>,
+  <>
+    {"  "}
+    <Key>domains</Key>
+    <P>: </P>
+    {list(profileCard.domains)}
+    <P>,</P>
+  </>,
+  <>
+    {"  "}
+    <Key>openTo</Key>
+    <P>: </P>
+    <Str>{personalInfo.workPreference}</Str>
+    <P>,</P>
+  </>,
+  <P>{"};"}</P>,
+];
+
+const ProfileCard = () => {
   const reduce = useReducedMotion();
-  const [shown, setShown] = useState(reduce ? demoCall.length : 0);
-  const [seconds, setSeconds] = useState(37);
+  const [shown, setShown] = useState(reduce ? lines.length : 0);
 
   useEffect(() => {
-    if (reduce) return;
-    const id = setInterval(() => {
-      setShown((n) => (n >= demoCall.length + 2 ? 0 : n + 1));
-    }, 1900);
-    const t = setInterval(() => setSeconds((s) => s + 1), 1000);
-    return () => {
-      clearInterval(id);
-      clearInterval(t);
-    };
-  }, [reduce]);
-
-  const speaking =
-    shown > 0 && shown <= demoCall.length ? demoCall[shown - 1].from : null;
-  const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
-  const ss = String(seconds % 60).padStart(2, "0");
+    if (reduce || shown >= lines.length) return;
+    const id = setTimeout(
+      () => setShown((n) => n + 1),
+      shown === 0 ? 500 : 260,
+    );
+    return () => clearTimeout(id);
+  }, [shown, reduce]);
 
   return (
     <div className="relative">
@@ -53,85 +107,49 @@ const CallDemo = () => {
         className="absolute -inset-6 rounded-[2rem] bg-accent/10 blur-3xl dark:bg-accent/[0.07]"
         aria-hidden="true"
       />
-      <div className="relative rounded-3xl border border-line bg-surface/90 backdrop-blur shadow-2xl shadow-black/10 dark:shadow-black/40 overflow-hidden">
-        {/* Call header */}
-        <div className="flex items-center justify-between border-b border-line px-5 py-4">
-          <div className="flex items-center gap-3">
-            <span className="relative grid h-9 w-9 place-items-center rounded-full bg-accent text-accent-ink">
-              <span
-                className="pulse-ring absolute inset-0 rounded-full bg-accent"
-                aria-hidden="true"
-              />
-              <FiPhoneCall size={15} className="relative" />
-            </span>
-            <div>
-              <p className="text-sm font-medium text-fg">
-                Restaurant front desk
-              </p>
-              <p className="font-mono text-[11px] text-subtle">
-                AI voice agent · Urdu / English
-              </p>
-            </div>
-          </div>
-          <span className="font-mono text-xs text-muted tabular-nums">
-            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-red-500 align-middle" />
-            {mm}:{ss}
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-surface/90 shadow-2xl shadow-black/10 backdrop-blur dark:shadow-black/40">
+        <div className="flex items-center gap-2 border-b border-line px-5 py-3.5">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          <span className="ml-3 font-mono text-xs text-subtle">
+            engineer.ts
           </span>
         </div>
-
-        {/* Transcript */}
-        <div
-          className="flex h-[330px] flex-col justify-end gap-3 overflow-hidden px-5 py-5"
-          aria-live="polite"
+        <pre
+          className="min-h-[300px] overflow-x-auto px-5 py-5 font-mono text-[12.5px] leading-[1.9] text-muted sm:text-[13px]"
+          aria-label={`${personalInfo.name}, ${profileCard.role}. Stack: ${profileCard.stack.join(", ")}.`}
         >
-          <AnimatePresence initial={false}>
-            {demoCall.slice(0, Math.min(shown, demoCall.length)).map((m, i) => (
-              <motion.div
-                key={`${i}-${m.text}`}
-                layout
-                initial={{ opacity: 0, y: 12, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease: EASE }}
-                className={`flex flex-col ${m.from === "agent" ? "items-end" : "items-start"}`}
-              >
-                <span className="mb-1 font-mono text-[10px] uppercase tracking-wider text-subtle">
-                  {m.from === "agent" ? "Callvio agent" : "Caller"}
-                </span>
-                <p
-                  className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 text-sm leading-snug ${
-                    m.from === "agent"
-                      ? "rounded-br-md bg-fg text-bg"
-                      : "rounded-bl-md bg-surface-2 text-fg border border-line"
-                  }`}
-                >
-                  {m.text}
-                </p>
-                {m.tag && (
-                  <span className="mt-1.5 rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[10px] text-accent-text">
-                    ✓ {m.tag}
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Waveform footer */}
-        <div className="flex items-center justify-between gap-4 border-t border-line px-5 py-3.5">
-          <VoiceWave bars={30} active={!!speaking} className="h-6 flex-1" />
-          <span className="shrink-0 font-mono text-[11px] text-subtle w-24 text-right">
-            {speaking === "agent"
-              ? "agent speaking"
-              : speaking === "caller"
-                ? "listening…"
-                : "connected"}
+          {lines.map((l, i) => (
+            <div
+              key={i}
+              className={`whitespace-pre-wrap transition-all duration-300 ${
+                i < shown
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-1.5 opacity-0"
+              }`}
+            >
+              <span className="mr-4 inline-block w-4 select-none text-right text-subtle/60">
+                {i + 1}
+              </span>
+              {l}
+              {i === Math.min(shown, lines.length) - 1 && (
+                <span
+                  className="ml-0.5 inline-block h-4 w-[7px] translate-y-[3px] animate-pulse bg-accent"
+                  aria-hidden="true"
+                />
+              )}
+            </div>
+          ))}
+        </pre>
+        <div className="flex items-center justify-between border-t border-line px-5 py-3 font-mono text-[11px] text-subtle">
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" /> ready to
+            ship
           </span>
+          <span>TypeScript · UTF-8</span>
         </div>
       </div>
-      <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-wider text-subtle">
-        Illustrative conversation
-      </p>
     </div>
   );
 };
@@ -154,18 +172,18 @@ const Hero = () => (
       <div>
         <motion.a
           {...fadeUp(0)}
-          href="#experience"
-          className="group mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 py-1 pl-1 pr-3.5 text-xs text-muted backdrop-blur hover:border-line-strong transition-colors"
+          href="#contact"
+          className="group mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 py-1 pl-1 pr-3.5 text-xs text-muted backdrop-blur transition-colors hover:border-line-strong"
         >
           <span className="flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 font-medium text-accent-text">
             <span className="relative flex h-1.5 w-1.5">
               <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-accent-text" />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-text" />
             </span>
-            Now
+            Available
           </span>
-          Building AI voice agents at Callvio
-          <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          {personalInfo.availability}
+          <FiArrowUpRight className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </motion.a>
 
         <motion.p
@@ -177,10 +195,10 @@ const Hero = () => (
 
         <motion.h1
           {...fadeUp(0.1)}
-          className="text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.25rem] font-semibold tracking-[-0.035em] text-fg text-balance"
+          className="text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.035em] text-fg text-balance sm:text-6xl lg:text-[4.1rem]"
         >
           {heroContent.headlineStart}{" "}
-          <span className="font-serif italic font-normal tracking-normal text-accent-text">
+          <span className="font-serif font-normal italic tracking-normal text-accent-text">
             {heroContent.headlineAccent}
           </span>
         </motion.h1>
@@ -189,8 +207,8 @@ const Hero = () => (
           {...fadeUp(0.2)}
           className="mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty"
         >
-          Hi, I'm{" "}
-          <span className="text-fg font-medium">{personalInfo.name}</span> —{" "}
+          Hi, I&apos;m{" "}
+          <span className="font-medium text-fg">{personalInfo.name}</span> —{" "}
           {heroContent.sub}
         </motion.p>
 
@@ -198,8 +216,8 @@ const Hero = () => (
           {...fadeUp(0.3)}
           className="mt-9 flex flex-wrap items-center gap-3"
         >
-          <a href="#projects" className={btn.primary}>
-            See my work <FiArrowDown />
+          <a href="#services" className={btn.primary}>
+            What I can do <FiArrowDown />
           </a>
           <RouterLink to="/resume" className={btn.secondary}>
             Resume <FiArrowUpRight />
@@ -210,14 +228,14 @@ const Hero = () => (
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn profile"
-              className="grid h-10 w-10 place-items-center rounded-full text-muted hover:text-fg hover:bg-surface-2 transition-colors"
+              className="grid h-10 w-10 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-fg"
             >
               <FaLinkedinIn size={16} />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
               aria-label="Send email"
-              className="grid h-10 w-10 place-items-center rounded-full text-muted hover:text-fg hover:bg-surface-2 transition-colors"
+              className="grid h-10 w-10 place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-fg"
             >
               <FiMail size={17} />
             </a>
@@ -231,11 +249,10 @@ const Hero = () => (
         transition={{ duration: 0.9, delay: 0.25, ease: EASE }}
         className="mx-auto w-full max-w-md lg:max-w-none"
       >
-        <CallDemo />
+        <ProfileCard />
       </motion.div>
     </div>
 
-    {/* Metrics strip */}
     <div className="mx-auto mt-20 max-w-6xl px-5 sm:px-8">
       <motion.dl
         {...fadeUp(0.45)}
@@ -245,10 +262,10 @@ const Hero = () => (
           <div key={m.label} className="bg-bg px-6 py-6">
             <dt className="sr-only">{m.label}</dt>
             <dd>
-              <span className="block text-3xl md:text-4xl font-semibold tracking-tight text-fg tabular-nums">
+              <span className="block text-3xl font-semibold tracking-tight text-fg tabular-nums md:text-4xl">
                 {m.value()}
               </span>
-              <span className="mt-1 block text-sm text-muted leading-snug">
+              <span className="mt-1 block text-sm leading-snug text-muted">
                 {m.label}
               </span>
             </dd>

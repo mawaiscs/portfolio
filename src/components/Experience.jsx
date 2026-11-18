@@ -124,16 +124,13 @@ const Role = ({ exp, index }) => {
 };
 
 const Experience = () => (
-  <section
-    id="experience"
-    className="py-24 md:py-32 bg-surface-2/40 border-y border-line"
-  >
+  <section id="experience" className="py-24 md:py-32">
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeader
-        index="02"
+        index="03"
         label="Experience"
         title="Where I've shipped production software."
-        intro="Two platforms, two very different domains: real-time conversational AI and clinical software for US healthcare providers."
+        intro="Full-stack ownership across a US healthcare SaaS and a real-time communications platform."
       />
       <div className="border-b border-line">
         {experiences.map((exp, i) => (

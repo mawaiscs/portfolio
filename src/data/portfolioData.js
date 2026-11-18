@@ -10,11 +10,12 @@ import {
   FaCloud,
   FaDatabase,
   FaShieldAlt,
-  FaRobot,
-  FaPhoneAlt,
-  FaProjectDiagram,
+  FaPlug,
+  FaUsers,
+  FaLayerGroup,
+  FaTachometerAlt,
   FaBolt,
-  FaComments,
+  FaCode,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -23,7 +24,6 @@ import {
   SiRedis,
   SiFirebase,
   SiTailwindcss,
-  SiBootstrap,
   SiMui,
   SiRedux,
   SiExpress,
@@ -35,9 +35,10 @@ import {
   SiPostman,
   SiKubernetes,
   SiJira,
-  SiBitbucket,
+  SiStripe,
+  SiZoom,
   SiWhatsapp,
-  SiMessenger,
+  SiGithubactions,
 } from "react-icons/si";
 import { TbBrandOpenai, TbBrandTwilio } from "react-icons/tb";
 
@@ -98,115 +99,156 @@ export const formatDuration = (start, end) => {
 };
 
 /* ------------------------------------------------------------------ */
+/*  Identity                                                           */
+/* ------------------------------------------------------------------ */
 
 export const personalInfo = {
   name: "Muhammad Awais",
   title: "Senior Software Engineer",
-  specialty: "AI Voice Agents · Conversational AI · Full-Stack",
+  specialty: "Full-Stack · Node.js · React · Angular · Cloud",
   tagline:
-    "I build production AI voice & chat agents and the cloud-native platforms behind them.",
+    "I design, build and ship reliable web products — from database to interface.",
   get description() {
-    return `Senior Software Engineer with ${yearsOfExperience()}+ years shipping production SaaS. At Callvio I build Urdu & English AI voice and chat agents — real-time telephony, speech pipelines, LLM workflows and usage-based billing. Before that I built core features of DocNow, a US post-acute care EHR, on Angular, Node.js, MongoDB and AWS.`;
+    return `Senior full-stack software engineer with ${yearsOfExperience()}+ years building production SaaS with Node.js, React, Angular and TypeScript. I own features end to end — APIs, data models, front-end architecture, real-time features, third-party integrations and cloud deployment — across healthcare and AI products.`;
   },
   get resumeSummary() {
-    return `Senior Software Engineer with ${yearsOfExperience()}+ years of experience building production SaaS across conversational AI and healthcare. Currently engineering Callvio's AI communications platform — Urdu & English voice agents over real phone lines, omnichannel chat agents (WhatsApp, Instagram, Messenger, web) and stateful business workflows — with Node.js, React, Redis and Google Cloud Run. Previously built core EHR features at DocNow, improving page load time by 40% and engagement by 25%. Strong in real-time systems, LLM integration, API design and mentoring engineers in Agile teams.`;
+    return `Senior Full-Stack Software Engineer with ${yearsOfExperience()}+ years of experience designing, building and scaling production web applications with Node.js, TypeScript, React and Angular. Owns features end to end: REST APIs and data models (MongoDB, Redis), front-end architecture and performance, real-time features (WebSockets), third-party integrations (payments, telephony, video, LLMs) and cloud deployment on AWS and Google Cloud. Delivered a 40% faster page load and 25% higher engagement on a US healthcare SaaS, and built core services for a multi-channel AI communications platform. Comfortable leading sprints, reviewing code and mentoring engineers.`;
   },
-  availability: "Open to senior & lead engineering roles",
+  availability: "Open to senior full-stack & backend roles",
   email: "muhammadawais.cse@gmail.com",
   phone: "+92 301 8768609",
   phoneHref: "+923018768609",
   location: "Lahore, Pakistan",
-  workPreference: "Remote · Hybrid",
+  workPreference: "Remote · Hybrid · On-site",
+  timezone: "PKT (UTC+5)",
   linkedin: "https://www.linkedin.com/in/awais-cs/",
   website: "https://portfolio-mawais.vercel.app",
   resumePdf: "/Muhammad_Awais_Resume.pdf",
 };
 
-export const about = {
-  paragraphs: [
-    "I'm a Senior Software Engineer who likes the hard, unglamorous parts of AI products — the parts that make a demo dependable. At Callvio I work on an AI front desk for Pakistani businesses: voice agents that answer real phone calls in Urdu, English and everything in between, chat agents on WhatsApp and social channels, and the workflows that turn a conversation into a confirmed booking or order.",
-    "That means thinking about latency budgets, interruptions (barge-in), noisy telephone audio, conversation state and whether an action really completed — not just whether the model sounded good. I work across the stack: Node.js services on Google Cloud Run, Redis, React dashboards, telephony and speech providers, and LLM orchestration.",
-    "Before Callvio I spent three years at DocNow building an EHR for US post-acute care providers with Angular, Node.js and MongoDB on AWS, where I also ran sprint ceremonies and mentored junior developers.",
-  ],
-  focus: [
-    "Real-time voice AI (STT → LLM → TTS, realtime audio models)",
-    "Conversational workflows & LLM tool use",
-    "Scalable Node.js backends & APIs",
-    "Healthcare & multi-tenant SaaS",
-  ],
+export const heroContent = {
+  eyebrow: "Senior Full-Stack Software Engineer · Lahore, Pakistan",
+  headlineStart: "I build web products that are",
+  headlineAccent: "fast, reliable and easy to grow.",
+  sub: "Node.js, React, Angular and TypeScript engineer with experience across healthcare SaaS and AI platforms — owning features from the database and APIs to the interface and the cloud.",
 };
 
-export const heroContent = {
-  eyebrow: "Senior Software Engineer · Lahore, Pakistan",
-  headlineStart: "I build AI voice agents that hold up on",
-  headlineAccent: "real phone calls.",
-  sub: "Urdu & English voice and chat agents, real-time telephony and the cloud-native Node.js / React platforms behind them — currently at Callvio.",
+// Shown in the hero "profile" card.
+export const profileCard = {
+  role: "Senior Full-Stack Engineer",
+  stack: ["TypeScript", "Node.js", "React", "Angular", "MongoDB", "AWS / GCP"],
+  focus: [
+    "APIs & data modelling",
+    "Front-end architecture",
+    "Real-time systems",
+    "Integrations & cloud",
+  ],
+  domains: ["Healthcare SaaS", "AI / communications", "B2B dashboards"],
 };
 
 export const metrics = [
   {
     value: () => `${yearsOfExperience()}+`,
-    label: "years shipping production SaaS",
+    label: "years shipping production software",
   },
-  { value: () => "5", label: "channels served by one Callvio agent" },
-  { value: () => "40%", label: "faster page loads delivered at DocNow" },
-  { value: () => "2", label: "production platforms: AI & healthcare" },
+  {
+    value: () => "40%",
+    label: "faster page loads delivered on a healthcare SaaS",
+  },
+  { value: () => "25+", label: "technologies used in production" },
+  { value: () => "2", label: "production SaaS platforms, end to end" },
 ];
 
-// Illustrative call used by the hero demo (no real customer data).
-export const demoCall = [
+export const about = {
+  paragraphs: [
+    "I'm a senior full-stack engineer who likes owning a feature from the first schema to the last pixel. I've spent my career building production SaaS — a clinical EHR platform for US healthcare providers and a multi-channel communications platform — with Node.js, TypeScript, React and Angular.",
+    "Most of my work sits where products get hard: data models that stay fast as they grow, APIs other teams can rely on, front ends that load quickly on any device, real-time features, and integrations with payments, telephony, video and AI services. I care about clean architecture, sensible testing and shipping in small, safe steps.",
+    "I also enjoy the team side of engineering — running sprint ceremonies, reviewing code and mentoring junior developers so the whole team ships better.",
+  ],
+  focus: [
+    "Full-stack web apps (Node.js · React · Angular)",
+    "API design, data modelling & performance",
+    "Real-time features & third-party integrations",
+    "Cloud deployment, CI/CD & code quality",
+  ],
+};
+
+// "How I can help" — generic, outcome-focused capabilities.
+export const services = [
   {
-    from: "caller",
-    text: "Assalam-o-alaikum, kal 8 baje do logon ke liye table mil sakti hai?",
+    icon: FaLayerGroup,
+    title: "Full-stack product development",
+    text: "Turn requirements into shipped features — data model, API, UI, tests and deployment — with clear trade-offs along the way.",
   },
   {
-    from: "agent",
-    text: "Wa alaikum assalam! Ji bilkul — kal 8 PM, 2 guests. Naam kya likh doon?",
+    icon: FaServer,
+    title: "Backend & API engineering",
+    text: "Scalable Node.js/Express services, REST APIs, auth and role-based access, background jobs and well-indexed MongoDB/Redis data layers.",
   },
   {
-    from: "caller",
-    text: "Awais. Actually — make it three people.",
-    tag: "Barge-in",
+    icon: FaTachometerAlt,
+    title: "Front-end architecture & performance",
+    text: "Maintainable React and Angular apps with solid state management, accessible UI and measurable speed gains (lazy loading, caching, bundle size).",
   },
   {
-    from: "agent",
-    text: "No problem: 3 guests, tomorrow at 8 PM. Your table is booked ✓",
-    tag: "Booking verified",
+    icon: FaBolt,
+    title: "Real-time features",
+    text: "Chat, live updates, notifications and streaming with WebSockets/Socket.IO — built to handle reconnects, ordering and scale.",
+  },
+  {
+    icon: FaPlug,
+    title: "Third-party integrations",
+    text: "Payments, SMS/voice, video, messaging and LLM APIs (Stripe, Twilio, Zoom SDK, WhatsApp, OpenAI) wired in safely with retries and monitoring.",
+  },
+  {
+    icon: FaCloud,
+    title: "Cloud, DevOps & delivery",
+    text: "Docker, CI/CD pipelines and deployments on AWS, Google Cloud Run and Vercel — plus the logging and alerts that keep production calm.",
+  },
+  {
+    icon: FaUsers,
+    title: "Team leadership & mentoring",
+    text: "Sprint planning, code reviews, technical documentation and mentoring juniors — keeping quality high while the team moves fast.",
+  },
+  {
+    icon: FaShieldAlt,
+    title: "Security & reliability",
+    text: "JWT/refresh-token auth, rate limiting, input validation, HTTPS everywhere and sensible error handling for sensitive data such as patient records.",
   },
 ];
 
-export const writing = [
+// "How I work" principles.
+export const approach = [
   {
-    title: "Building AI Voice Agents for Pakistan Is Harder Than It Looks",
-    blurb:
-      "Code-switched Urdu & English, SIP telephony, latency budgets and barge-in on real calls.",
-    href: "https://callvio.co/blog/building-ai-voice-agents-pakistan-engineering",
-    tag: "Engineering",
+    title: "Understand the problem first",
+    text: "I start from the user and the business goal, then pick the simplest design that solves it — and write down the trade-offs.",
   },
   {
-    title: "Product Journal: What We Shipped — November 2026",
-    blurb:
-      "Restaurant workflows, editable pending orders, early reply audio and stale-reply protection.",
-    href: "https://callvio.co/blog/callvio-product-journal-november-2026",
-    tag: "Product updates",
+    title: "Ship small, safe increments",
+    text: "Feature flags, focused pull requests, automated tests and CI/CD so changes reach production often and without drama.",
   },
   {
-    title: "What Deploying AI for Pakistani Businesses Has Taught Us",
-    blurb:
-      "Designing around how businesses actually operate, not how software assumes they do.",
-    href: "https://callvio.co/blog/deploying-ai-pakistani-businesses-lessons",
-    tag: "Lessons",
+    title: "Measure, then optimise",
+    text: "Performance and reliability work is driven by numbers — load times, query plans, error rates — not guesses.",
+  },
+  {
+    title: "Leave things better",
+    text: "Readable code, useful docs and reviews that teach. The next engineer (often me) should move faster, not slower.",
   },
 ];
 
 export const navLinks = [
   { name: "About", to: "about" },
+  { name: "Services", to: "services" },
   { name: "Experience", to: "experience" },
   { name: "Projects", to: "projects" },
   { name: "Skills", to: "skills" },
-  { name: "Writing", to: "writing" },
   { name: "Contact", to: "contact" },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Experience                                                         */
+/* ------------------------------------------------------------------ */
 
 export const experiences = [
   {
@@ -219,36 +261,31 @@ export const experiences = [
     end: null,
     website: "https://callvio.co/",
     dashboard: "https://dashboard.callvio.co/",
-    logo: "🤖",
     description:
-      "Callvio is an AI communications platform for Pakistani businesses: Urdu & English AI voice agents, AI chat agents on WhatsApp and social channels, and connected workflows, billed per minute / per AI reply in PKR. Work spans the whole platform — telephony and real-time speech, LLM orchestration, workflows, billing and the customer dashboard.",
+      "SaaS communications platform (voice, WhatsApp and web chat with AI assistance) for small and mid-sized businesses. Full-stack role across backend services, real-time integrations, billing and the customer dashboard.",
     highlights: [
-      "Architected and shipped the AI voice agent that answers live business calls in Urdu, English and code-switched speech — handling FAQs, bookings, orders and human handover",
-      "Built the real-time voice pipeline (SIP/telephony → streaming STT → LLM → TTS) across Twilio, Infobip and Jazz with Deepgram and Google speech, and benchmarked cascaded pipelines against realtime audio models on real phone calls",
-      "Reduced perceived response latency with early reply audio, barge-in (interruption) handling and stale-reply protection so the agent never answers a question the caller has already corrected",
-      "Extended the platform from voice to omnichannel chat — one agent serving WhatsApp, Instagram, Facebook Messenger and website chat with shared business knowledge and conversation state",
-      "Engineered stateful industry workflows — restaurant ordering and reservations with staff acceptance, edits to pending orders, and appointment booking — that sync with calendars/CRMs and verify outcomes before confirming to the customer",
-      "Designed the usage-based billing foundation: a services-based pricing catalogue, per-minute voice and per-AI-reply metering, volume tiers and an admin pricing estimator",
-      "Built the React dashboard (Redux Toolkit, RTK Query) for agent setup, business knowledge, conversation history and analytics",
-      "Run Node.js services on Google Cloud Run with Redis for session state and caching, Firebase, automated tests and CI/CD",
+      "Designed and built Node.js services for real-time voice and chat conversations, integrating Twilio, Infobip and SIP telephony, speech-to-text/text-to-speech and OpenAI LLM APIs",
+      "Built the customer dashboard in React with Redux Toolkit and RTK Query — onboarding, configuration, conversation history and analytics",
+      "Implemented a multi-channel messaging layer (WhatsApp, Instagram, Messenger, web chat) sharing one conversation model and business knowledge base",
+      "Engineered stateful business workflows — bookings, orders with staff approval and edits, CRM/calendar sync — with verification before confirming results to customers",
+      "Designed usage-based billing: a services pricing catalogue, per-minute and per-message metering, volume tiers and an admin pricing estimator",
+      "Reduced response latency with streaming, early responses, interruption handling and guards against stale replies",
+      "Run services on Google Cloud Run with Redis for sessions and caching, Firebase, automated tests and CI/CD",
     ],
     tech: [
       "Node.js",
+      "TypeScript",
       "React",
       "Redux Toolkit",
       "RTK Query",
-      "OpenAI",
-      "Deepgram",
-      "Google STT/TTS",
-      "Twilio",
-      "Infobip",
-      "SIP",
-      "WebSockets",
-      "WhatsApp API",
       "Redis",
       "Firebase",
+      "WebSockets",
+      "Twilio",
+      "Infobip",
+      "WhatsApp API",
+      "OpenAI",
       "Google Cloud Run",
-      "Vercel",
       "CI/CD",
     ],
   },
@@ -262,16 +299,15 @@ export const experiences = [
     end: "2025-04",
     website: "https://docnow.ai/",
     dashboard: "https://live.doctornow.io/login",
-    logo: "🏥",
     description:
-      "DocNow (formerly DoctorNow) is an EHR built for US post-acute care providers — specialty charting templates, PointClickCare & MatrixCare integration, e-prescribing, MIPS and analytics. Built core product features across the Angular front end, Node.js APIs and MongoDB data layer on AWS.",
+      "Electronic health record (EHR) SaaS for US post-acute care providers (formerly DoctorNow). Full-stack role across the Angular front end, Node.js APIs and MongoDB data layer on AWS.",
     highlights: [
       "Reduced page load time by 40% and increased user engagement by 25% through lazy loading, AOT builds, bundle optimisation, CDN delivery and a UI revamp",
       "Led front-end architecture in Angular for desktop and mobile clinical workflows — charting, digital prescriptions, scheduling and patient history",
-      "Built scalable Node.js/Express APIs with modular middleware pipelines and consistent error handling for clinical and administrative workflows",
+      "Built scalable Node.js/Express APIs with modular middleware, validation and consistent error handling",
       "Designed and optimised MongoDB schemas, indexes and aggregation pipelines for large volumes of patient data",
       "Built real-time doctor–patient chat with Socket.IO and integrated Twilio (SMS/voice), Zoom SDK video consultations and payment gateways",
-      "Secured the platform with JWT + refresh tokens, HTTPS enforcement, rate limiting and input validation/sanitisation",
+      "Secured the platform with JWT + refresh tokens, HTTPS enforcement, rate limiting and input sanitisation",
       "Ran Agile ceremonies, code reviews and CI/CD; mentored junior developers",
     ],
     tech: [
@@ -301,61 +337,38 @@ experiences.forEach((exp) => {
   });
 });
 
+/* ------------------------------------------------------------------ */
+/*  Skills                                                             */
+/* ------------------------------------------------------------------ */
+
 export const skillCategories = [
-  {
-    title: "AI & Voice",
-    icon: FaRobot,
-    color: "text-purple-400",
-    skills: [
-      { name: "LLM integration & tool calling (OpenAI)", icon: TbBrandOpenai },
-      { name: "Real-time voice pipelines (STT → LLM → TTS)", icon: FaBolt },
-      { name: "Deepgram & Google STT/TTS", icon: SiGooglecloud },
-      { name: "Barge-in, turn-taking & latency tuning", icon: FaRobot },
-      { name: "Prompt & conversation design", icon: FaComments },
-    ],
-  },
-  {
-    title: "Telephony & Messaging",
-    icon: FaPhoneAlt,
-    color: "text-pink-400",
-    skills: [
-      { name: "Twilio (Voice, SMS)", icon: TbBrandTwilio },
-      { name: "Infobip & SIP trunking", icon: FaPhoneAlt },
-      { name: "WhatsApp Business API", icon: SiWhatsapp },
-      { name: "Instagram & Messenger APIs", icon: SiMessenger },
-      { name: "WebSockets & Socket.IO", icon: SiSocketdotio },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: FaServer,
-    color: "text-green-400",
-    skills: [
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express.js", icon: SiExpress },
-      { name: "REST API design", icon: FaServer },
-      { name: "Event-driven & workflow systems", icon: FaProjectDiagram },
-      { name: "Python", icon: FaPython },
-    ],
-  },
   {
     title: "Frontend",
     icon: FaReact,
-    color: "text-cyan-400",
     skills: [
       { name: "React", icon: FaReact },
-      { name: "Redux Toolkit / RTK Query", icon: SiRedux },
       { name: "Angular", icon: FaAngular },
       { name: "TypeScript", icon: SiTypescript },
       { name: "JavaScript (ES2023+)", icon: SiJavascript },
+      { name: "Redux Toolkit / RTK Query", icon: SiRedux },
       { name: "Tailwind CSS", icon: SiTailwindcss },
       { name: "MUI / Bootstrap", icon: SiMui },
     ],
   },
   {
+    title: "Backend",
+    icon: FaServer,
+    skills: [
+      { name: "Node.js", icon: FaNodeJs },
+      { name: "Express.js", icon: SiExpress },
+      { name: "REST API design", icon: FaServer },
+      { name: "Auth (JWT, OAuth, RBAC)", icon: FaShieldAlt },
+      { name: "Python", icon: FaPython },
+    ],
+  },
+  {
     title: "Data",
     icon: FaDatabase,
-    color: "text-yellow-400",
     skills: [
       { name: "MongoDB (indexing, aggregation)", icon: SiMongodb },
       { name: "Redis (caching, sessions)", icon: SiRedis },
@@ -363,129 +376,128 @@ export const skillCategories = [
     ],
   },
   {
+    title: "Real-time & Integrations",
+    icon: FaPlug,
+    skills: [
+      { name: "WebSockets / Socket.IO", icon: SiSocketdotio },
+      { name: "Twilio (SMS, voice)", icon: TbBrandTwilio },
+      { name: "Payments (Stripe & gateways)", icon: SiStripe },
+      { name: "Zoom Video SDK", icon: SiZoom },
+      { name: "WhatsApp Business API", icon: SiWhatsapp },
+      { name: "OpenAI / LLM APIs", icon: TbBrandOpenai },
+    ],
+  },
+  {
     title: "Cloud & DevOps",
     icon: FaCloud,
-    color: "text-orange-400",
     skills: [
-      { name: "Google Cloud Run", icon: SiGooglecloud },
       { name: "AWS (EC2, S3, CloudFront)", icon: FaAws },
+      { name: "Google Cloud Run", icon: SiGooglecloud },
       { name: "Docker", icon: FaDocker },
       { name: "Kubernetes", icon: SiKubernetes },
+      { name: "CI/CD (GitHub Actions)", icon: SiGithubactions },
       { name: "Nginx", icon: SiNginx },
       { name: "Vercel", icon: SiVercel },
-      { name: "CI/CD pipelines", icon: FaCloud },
     ],
   },
   {
     title: "Practices & Tools",
-    icon: FaShieldAlt,
-    color: "text-red-400",
+    icon: FaCode,
     skills: [
-      { name: "Auth & API security (JWT, rate limiting)", icon: FaShieldAlt },
       { name: "Testing (Jest)", icon: SiJest },
-      { name: "Git / Bitbucket", icon: FaGitAlt },
-      { name: "Postman", icon: SiPostman },
+      { name: "Git / code review", icon: FaGitAlt },
+      { name: "Postman / API testing", icon: SiPostman },
       { name: "Jira · Agile / Scrum", icon: SiJira },
-      { name: "Code review & mentoring", icon: SiBitbucket },
+      { name: "Mentoring & documentation", icon: FaUsers },
     ],
   },
 ];
 
 // Flat, ATS-friendly skill lines for the resume.
 export const resumeSkills = [
-  { label: "Languages", value: "JavaScript, TypeScript, Python" },
+  { label: "Languages", value: "TypeScript, JavaScript, Python" },
   {
-    label: "AI & Voice",
+    label: "Frontend",
     value:
-      "LLM integration & tool calling (OpenAI), real-time voice agents, STT/TTS (Deepgram, Google), barge-in & latency optimisation, prompt engineering",
-  },
-  {
-    label: "Telephony & Messaging",
-    value:
-      "Twilio, Infobip, SIP, WhatsApp Business API, Instagram & Messenger APIs, WebSockets, Socket.IO",
+      "React, Angular, Redux Toolkit, RTK Query, Tailwind CSS, MUI, Bootstrap",
   },
   {
     label: "Backend",
     value:
-      "Node.js, Express.js, REST APIs, event-driven workflows, microservices",
-  },
-  {
-    label: "Frontend",
-    value:
-      "React, Redux Toolkit, RTK Query, Angular, Tailwind CSS, MUI, Bootstrap",
+      "Node.js, Express.js, REST APIs, authentication (JWT, OAuth, RBAC), microservices",
   },
   { label: "Data", value: "MongoDB, Redis, Firebase / Firestore" },
   {
+    label: "Real-time & Integrations",
+    value:
+      "WebSockets, Socket.IO, Twilio, Stripe & payment gateways, Zoom SDK, WhatsApp Business API, OpenAI / LLM APIs",
+  },
+  {
     label: "Cloud & DevOps",
     value:
-      "Google Cloud Run, AWS (EC2, S3, CloudFront), Docker, Kubernetes, Nginx, Vercel, CI/CD",
+      "AWS (EC2, S3, CloudFront), Google Cloud Run, Docker, Kubernetes, Nginx, Vercel, CI/CD",
   },
   {
     label: "Practices",
-    value:
-      "Jest, Git, Bitbucket, Postman, Jira, Agile/Scrum, code review, mentoring",
+    value: "Jest, Git, Postman, Jira, Agile/Scrum, code review, mentoring",
   },
 ];
+
+/* ------------------------------------------------------------------ */
+/*  Projects (case studies)                                            */
+/* ------------------------------------------------------------------ */
 
 export const projects = [
   {
     id: 1,
-    title: "Callvio — AI Front Desk for Pakistani Businesses",
+    title: "Multi-channel communications platform",
+    company: "Callvio",
     summary:
-      "Urdu & English AI voice and chat agents that answer calls and messages, check business information and complete the task — bookings, orders, follow-ups and human handover.",
-    image: "🤖",
-    gradientFrom: "#7c3aed",
-    gradientTo: "#7e22ce",
+      "A SaaS platform where businesses handle phone calls, WhatsApp and web chat in one place — with AI assistance, automated workflows and usage-based billing.",
     links: {
       live: "https://callvio.co/",
       dashboard: "https://dashboard.callvio.co/",
     },
     problem:
-      "Pakistani businesses run on phone calls and WhatsApp, and customers switch between Urdu and English mid-sentence over noisy phone lines. Off-the-shelf voice bots sound good in a demo but break on real calls.",
-    role: "Senior Software Engineer — voice pipeline, conversational workflows, billing and dashboard.",
+      "Conversations arrive on several channels at once and must stay in sync, respond in real time, trigger business actions (bookings, orders) and be billed accurately per use.",
+    role: "Senior Software Engineer — backend services, real-time integrations, billing and the React dashboard.",
     features: [
-      "Urdu, English and code-switched voice conversations on real phone numbers (SIP / Twilio / Infobip / Jazz)",
-      "Low-latency speech pipeline with early reply audio, barge-in and stale-reply protection",
-      "One agent across voice, WhatsApp, Instagram, Messenger and web chat",
-      "Restaurant ordering, reservations and appointment workflows with staff acceptance",
-      "Usage metering & PKR pricing catalogue (per minute / per AI reply, volume tiers)",
-      "Dashboard for agent setup, knowledge, conversations and analytics",
+      "Real-time voice & chat services over telephony and messaging APIs",
+      "One conversation model shared across 5 channels",
+      "Stateful workflows with verification before confirming results",
+      "Usage metering, pricing catalogue and volume tiers",
+      "React dashboard for setup, history and analytics",
     ],
     tech: [
       "Node.js",
       "React",
       "Redux Toolkit",
-      "OpenAI",
-      "Deepgram",
-      "Google STT/TTS",
-      "Twilio",
-      "Infobip",
-      "WhatsApp API",
       "Redis",
       "Firebase",
+      "WebSockets",
+      "Twilio",
+      "OpenAI",
       "Cloud Run",
     ],
   },
   {
     id: 2,
-    title: "DocNow — EHR for Post-Acute Care",
+    title: "Healthcare EHR platform",
+    company: "DocNow",
     summary:
-      "An EHR built for US post-acute care providers: specialty charting templates, facility EMR integration, e-prescribing, reporting and analytics.",
-    image: "🏥",
-    gradientFrom: "#2563eb",
-    gradientTo: "#0891b2",
+      "An electronic health record platform for US post-acute care providers: charting, e-prescribing, scheduling, patient history and analytics.",
     links: {
       live: "https://docnow.ai/",
       dashboard: "https://live.doctornow.io/login",
     },
     problem:
-      "Clinicians in post-acute care spend hours a day on documentation. The platform had to be fast on any device, secure with patient data, and work alongside facility systems.",
+      "Clinicians spend hours a day on documentation. The app had to be fast on any device, secure with patient data and dependable at scale.",
     role: "Senior Software Engineer — Angular front-end architecture, Node.js APIs and MongoDB data modelling.",
     features: [
-      "40% faster page loads and 25% higher engagement after a performance and UI overhaul",
+      "40% faster page loads and 25% higher engagement",
       "Charting, digital prescriptions, scheduling and patient history",
-      "Real-time doctor–patient chat (Socket.IO) and Zoom SDK video consultations",
-      "Optimised MongoDB schemas and aggregation pipelines for large patient datasets",
+      "Real-time chat (Socket.IO) and Zoom SDK video consultations",
+      "Optimised MongoDB schemas and aggregation pipelines",
       "JWT + refresh tokens, rate limiting and input sanitisation",
     ],
     tech: [
@@ -512,7 +524,7 @@ export const coursework = [
       "Docker & Kubernetes",
       "WebSockets & Real-Time Communication",
       "Cryptography & Security",
-      "Multithreading with Worker Threads",
+      "Worker Threads",
       "Compression Algorithms",
     ],
   },
@@ -520,16 +532,16 @@ export const coursework = [
     title: "Backend with Node.js (Comprehensive)",
     topics: [
       "Node.js Internals & Event Loop",
-      "Streams, Buffers & Binary Data",
-      "Computer Networking & TCP/UDP",
-      "Express.js & RESTful APIs",
-      "MongoDB & Mongoose (MVC)",
-      "Authentication (JWT, OAuth, Google Login)",
-      "RBAC & Redis Integration",
-      "Security (XSS, CSRF, CSP, Rate Limiting)",
+      "Streams & Buffers",
+      "Networking (TCP/UDP)",
+      "Express.js & REST",
+      "MongoDB & Mongoose",
+      "Auth (JWT, OAuth)",
+      "RBAC & Redis",
+      "Security (XSS, CSRF, CSP)",
       "AWS S3 & CloudFront",
-      "Payment Gateways (Stripe, Razorpay)",
-      "CI/CD & Deployment (Nginx, PM2, GitHub Actions)",
+      "Payments (Stripe, Razorpay)",
+      "CI/CD (Nginx, PM2, GitHub Actions)",
     ],
   },
 ];

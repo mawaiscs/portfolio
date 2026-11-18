@@ -8,17 +8,19 @@ const Skills = () => (
   >
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeader
-        index="04"
+        index="05"
         label="Toolkit"
         title="Skills & stack"
-        intro="Grouped by what I use them for, from the voice pipeline down to deployment."
+        intro="The tools I use day to day, from the interface down to deployment."
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {skillCategories.map((cat, i) => (
           <Reveal
             key={cat.title}
             delay={(i % 3) * 0.06}
-            className={i === 0 || i === skillCategories.length - 1 ? "lg:col-span-2" : ""}
+            className={
+              i === 0 || i === skillCategories.length - 1 ? "lg:col-span-2" : ""
+            }
           >
             <SpotlightCard className="h-full p-6">
               <div className="mb-5 flex items-center gap-3">

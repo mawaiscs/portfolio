@@ -10,7 +10,7 @@ import {
 
 const FILE_NAME = "Muhammad_Awais_Resume";
 const SITE_TITLE =
-  "Muhammad Awais | Senior Software Engineer — AI Voice Agents & Full-Stack";
+  "Muhammad Awais | Senior Full-Stack Software Engineer (Node.js, React, Angular)";
 
 const stripProtocol = (url) =>
   url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");

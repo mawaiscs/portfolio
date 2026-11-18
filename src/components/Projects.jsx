@@ -1,9 +1,10 @@
 import {
   FiArrowUpRight,
-  FiPhone,
   FiMessageCircle,
   FiCpu,
-  FiVolume2,
+  FiServer,
+  FiMonitor,
+  FiCreditCard,
   FiZap,
   FiDatabase,
   FiCheckCircle,
@@ -46,52 +47,54 @@ const Connector = () => (
   </svg>
 );
 
-const VoicePipeline = () => (
+const SystemDiagram = () => (
   <figure className="rounded-2xl border border-line bg-bg/60 p-4 sm:p-5">
     <figcaption className="mb-4 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-subtle">
-      <span>Real-time voice pipeline</span>
-      <span className="text-accent-text">streaming</span>
+      <span>System architecture</span>
+      <span className="text-accent-text">real-time</span>
     </figcaption>
     <div className="flex items-stretch gap-1.5 sm:gap-1">
-      <Node icon={FiPhone} title="Caller" sub="PSTN / SIP" />
+      <Node icon={FiMessageCircle} title="Channels" sub="voice · chat · web" />
       <Connector />
-      <Node icon={FiVolume2} title="STT" sub="Deepgram · Google" />
+      <Node
+        icon={FiServer}
+        title="Node.js APIs"
+        sub="WebSockets · REST"
+        accent
+      />
       <Connector />
-      <Node icon={FiCpu} title="LLM + tools" sub="state · knowledge" accent />
+      <Node icon={FiCpu} title="Workflows" sub="rules · AI · jobs" />
       <Connector />
-      <Node icon={FiVolume2} title="TTS" sub="early reply audio" />
+      <Node icon={FiMonitor} title="Dashboard" sub="React · analytics" />
     </div>
     <div className="mt-3 grid grid-cols-2 gap-2">
       <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5">
-        <FiMessageCircle className="shrink-0 text-muted" size={14} />
+        <FiDatabase className="shrink-0 text-muted" size={14} />
         <p className="text-[11.5px] leading-tight text-muted">
-          <span className="text-fg font-medium">Same agent</span> on WhatsApp,
-          Instagram, Messenger, web
+          <span className="font-medium text-fg">Redis + Firebase</span> for
+          state, sessions and history
         </p>
       </div>
       <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5">
-        <FiDatabase className="shrink-0 text-muted" size={14} />
+        <FiCreditCard className="shrink-0 text-muted" size={14} />
         <p className="text-[11.5px] leading-tight text-muted">
-          <span className="text-fg font-medium">Workflows</span>: bookings,
-          orders, CRM, billing
+          <span className="font-medium text-fg">Usage metering</span> and tiered
+          billing
         </p>
       </div>
     </div>
     <div className="mt-3 flex flex-wrap gap-1.5">
-      {[
-        "Barge-in",
-        "Stale-reply guard",
-        "Urdu ↔ English",
-        "Human handover",
-      ].map((t) => (
-        <span
-          key={t}
-          className="inline-flex items-center gap-1 rounded-full bg-surface-2 px-2 py-0.5 font-mono text-[10px] text-muted"
-        >
-          <FiZap size={9} className="text-accent-text" />
-          {t}
-        </span>
-      ))}
+      {["Low latency", "Multi-channel", "Third-party APIs", "Auto-scaling"].map(
+        (t) => (
+          <span
+            key={t}
+            className="inline-flex items-center gap-1 rounded-full bg-surface-2 px-2 py-0.5 font-mono text-[10px] text-muted"
+          >
+            <FiZap size={9} className="text-accent-text" />
+            {t}
+          </span>
+        ),
+      )}
     </div>
   </figure>
 );
@@ -136,16 +139,16 @@ const ImpactPanel = () => (
   </figure>
 );
 
-const visuals = { 1: VoicePipeline, 2: ImpactPanel };
+const visuals = { 1: SystemDiagram, 2: ImpactPanel };
 
 const Projects = () => (
   <section id="projects" className="py-24 md:py-32">
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
       <SectionHeader
-        index="03"
+        index="04"
         label="Selected work"
-        title="Case studies"
-        intro="The problem, what I owned, and what I built — with the architecture behind it."
+        title="Selected projects"
+        intro="Two production platforms in very different domains — the problem, what I owned and what I built."
       />
 
       <div className="space-y-8">
@@ -177,7 +180,10 @@ const Projects = () => (
                       </div>
                     </div>
 
-                    <h3 className="mt-6 text-2xl sm:text-3xl font-semibold tracking-tight text-fg text-balance">
+                    <p className="mt-6 font-mono text-xs uppercase tracking-wider text-accent-text">
+                      {p.company}
+                    </p>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-tight text-fg text-balance sm:text-3xl">
                       {p.title}
                     </h3>
                     <p className="mt-3 text-[15px] leading-relaxed text-muted text-pretty">

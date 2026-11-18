@@ -10,9 +10,9 @@ const About = () => (
         label="About"
         title={
           <>
-            The unglamorous parts that make an AI demo{" "}
-            <span className="font-serif italic font-normal text-accent-text">
-              dependable
+            Engineer who owns the whole feature —{" "}
+            <span className="font-serif font-normal italic text-accent-text">
+              end to end
             </span>
             .
           </>

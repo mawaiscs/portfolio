@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiArrowUpRight, FiCheck, FiCopy, FiMail } from "react-icons/fi";
 import { personalInfo } from "../data/portfolioData";
-import { Reveal, VoiceWave } from "./ui";
+import { Reveal } from "./ui";
 import { btn } from "./buttons";
 
 const Contact = () => {
@@ -32,21 +32,19 @@ const Contact = () => {
               aria-hidden="true"
             />
             <div className="relative">
-              <VoiceWave bars={22} className="mx-auto mb-8 h-7 w-fit" />
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-subtle">
                 06 — Contact
               </p>
               <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-fg text-balance sm:text-5xl md:text-6xl">
-                Let&apos;s build something that{" "}
-                <span className="font-serif italic font-normal text-accent-text">
-                  talks back
+                Have a product to build?{" "}
+                <span className="font-serif font-normal italic text-accent-text">
+                  Let&apos;s talk.
                 </span>
-                .
               </h2>
               <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty">
-                {personalInfo.availability}. Happy to talk about voice AI,
-                real-time systems or senior full-stack roles, remote or in
-                Lahore.
+                {personalInfo.availability}. I&apos;m happy to chat about
+                full-stack, backend or front-end roles, contracts and
+                interesting problems — remote, hybrid or in Lahore.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

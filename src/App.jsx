@@ -12,7 +12,7 @@ import About from "./components/About";
 import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
-import Writing from "./components/Writing";
+import Services from "./components/Services";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -40,10 +40,10 @@ function Portfolio() {
       <main id="main-content">
         <Hero />
         <About />
+        <Services />
         <Experience />
         <Projects />
         <Skills />
-        <Writing />
         <Education />
         <Contact />
       </main>
