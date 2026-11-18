@@ -1,155 +1,262 @@
-import { motion } from "framer-motion";
-import { FaLinkedin, FaEnvelope, FaChevronDown } from "react-icons/fa";
-import { Link } from "react-scroll";
-import { personalInfo } from "../data/portfolioData";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
+import { FaLinkedinIn } from "react-icons/fa";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiMail,
+  FiPhoneCall,
+} from "react-icons/fi";
+import {
+  personalInfo,
+  heroContent,
+  metrics,
+  demoCall,
+} from "../data/portfolioData";
+import { VoiceWave } from "./ui";
+import { btn } from "./buttons";
 
-const Hero = () => {
+const EASE = [0.21, 0.47, 0.32, 0.98];
+const fadeUp = (delay) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, delay, ease: EASE },
+});
+
+/** Illustrative live-call card: shows the problems Callvio's agents solve. */
+const CallDemo = () => {
+  const reduce = useReducedMotion();
+  const [shown, setShown] = useState(reduce ? demoCall.length : 0);
+  const [seconds, setSeconds] = useState(37);
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = setInterval(() => {
+      setShown((n) => (n >= demoCall.length + 2 ? 0 : n + 1));
+    }, 1900);
+    const t = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => {
+      clearInterval(id);
+      clearInterval(t);
+    };
+  }, [reduce]);
+
+  const speaking =
+    shown > 0 && shown <= demoCall.length ? demoCall[shown - 1].from : null;
+  const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const ss = String(seconds % 60).padStart(2, "0");
+
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-1/4 -right-32 w-96 h-96 bg-violet-500/15 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-800/10 rounded-full blur-3xl" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(99,102,241,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.3) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-indigo-500/30 bg-indigo-950/50 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-indigo-300">
-              Available for opportunities
+    <div className="relative">
+      <div
+        className="absolute -inset-6 rounded-[2rem] bg-accent/10 blur-3xl dark:bg-accent/[0.07]"
+        aria-hidden="true"
+      />
+      <div className="relative rounded-3xl border border-line bg-surface/90 backdrop-blur shadow-2xl shadow-black/10 dark:shadow-black/40 overflow-hidden">
+        {/* Call header */}
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
+          <div className="flex items-center gap-3">
+            <span className="relative grid h-9 w-9 place-items-center rounded-full bg-accent text-accent-ink">
+              <span
+                className="pulse-ring absolute inset-0 rounded-full bg-accent"
+                aria-hidden="true"
+              />
+              <FiPhoneCall size={15} className="relative" />
             </span>
+            <div>
+              <p className="text-sm font-medium text-fg">
+                Restaurant front desk
+              </p>
+              <p className="font-mono text-[11px] text-subtle">
+                AI voice agent · Urdu / English
+              </p>
+            </div>
           </div>
-        </motion.div>
+          <span className="font-mono text-xs text-muted tabular-nums">
+            <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-red-500 align-middle" />
+            {mm}:{ss}
+          </span>
+        </div>
+
+        {/* Transcript */}
+        <div
+          className="flex h-[330px] flex-col justify-end gap-3 overflow-hidden px-5 py-5"
+          aria-live="polite"
+        >
+          <AnimatePresence initial={false}>
+            {demoCall.slice(0, Math.min(shown, demoCall.length)).map((m, i) => (
+              <motion.div
+                key={`${i}-${m.text}`}
+                layout
+                initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: EASE }}
+                className={`flex flex-col ${m.from === "agent" ? "items-end" : "items-start"}`}
+              >
+                <span className="mb-1 font-mono text-[10px] uppercase tracking-wider text-subtle">
+                  {m.from === "agent" ? "Callvio agent" : "Caller"}
+                </span>
+                <p
+                  className={`max-w-[88%] rounded-2xl px-3.5 py-2.5 text-sm leading-snug ${
+                    m.from === "agent"
+                      ? "rounded-br-md bg-fg text-bg"
+                      : "rounded-bl-md bg-surface-2 text-fg border border-line"
+                  }`}
+                >
+                  {m.text}
+                </p>
+                {m.tag && (
+                  <span className="mt-1.5 rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[10px] text-accent-text">
+                    ✓ {m.tag}
+                  </span>
+                )}
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Waveform footer */}
+        <div className="flex items-center justify-between gap-4 border-t border-line px-5 py-3.5">
+          <VoiceWave bars={30} active={!!speaking} className="h-6 flex-1" />
+          <span className="shrink-0 font-mono text-[11px] text-subtle w-24 text-right">
+            {speaking === "agent"
+              ? "agent speaking"
+              : speaking === "caller"
+                ? "listening…"
+                : "connected"}
+          </span>
+        </div>
+      </div>
+      <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-wider text-subtle">
+        Illustrative conversation
+      </p>
+    </div>
+  );
+};
+
+const Hero = () => (
+  <section
+    id="top"
+    className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-24"
+  >
+    <div
+      className="bg-grid absolute inset-0 -z-10 opacity-60"
+      aria-hidden="true"
+    />
+    <div
+      className="absolute left-1/2 top-0 -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px] dark:bg-accent/[0.06]"
+      aria-hidden="true"
+    />
+
+    <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+      <div>
+        <motion.a
+          {...fadeUp(0)}
+          href="#experience"
+          className="group mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-surface/70 py-1 pl-1 pr-3.5 text-xs text-muted backdrop-blur hover:border-line-strong transition-colors"
+        >
+          <span className="flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 font-medium text-accent-text">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-accent-text" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-text" />
+            </span>
+            Now
+          </span>
+          Building AI voice agents at Callvio
+          <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </motion.a>
+
+        <motion.p
+          {...fadeUp(0.05)}
+          className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-subtle"
+        >
+          {heroContent.eyebrow}
+        </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 tracking-tight"
+          {...fadeUp(0.1)}
+          className="text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[4.25rem] font-semibold tracking-[-0.035em] text-fg text-balance"
         >
-          <span className="text-white">Hi, I'm </span>
-          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-indigo-400 bg-clip-text text-transparent">
-            {personalInfo.name}
+          {heroContent.headlineStart}{" "}
+          <span className="font-serif italic font-normal tracking-normal text-accent-text">
+            {heroContent.headlineAccent}
           </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-3 font-light"
+          {...fadeUp(0.2)}
+          className="mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty"
         >
-          {personalInfo.title}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-sm sm:text-base text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed"
-        >
-          {personalInfo.description}
+          Hi, I'm{" "}
+          <span className="text-fg font-medium">{personalInfo.name}</span> —{" "}
+          {heroContent.sub}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          {...fadeUp(0.3)}
+          className="mt-9 flex flex-wrap items-center gap-3"
         >
-          <Link
-            to="experience"
-            spy
-            smooth
-            offset={-80}
-            duration={500}
-            className="group px-8 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
-          >
-            View My Work
-          </Link>
-          <Link
-            to="contact"
-            spy
-            smooth
-            offset={-80}
-            duration={500}
-            className="px-8 py-3 border border-slate-700 rounded-xl text-slate-300 hover:text-white hover:border-indigo-500/50 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer"
-          >
-            Get in Touch
-          </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex items-center justify-center gap-4 mt-8"
-        >
-          <a
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
-          >
-            <FaLinkedin size={20} />
+          <a href="#projects" className={btn.primary}>
+            See my work <FiArrowDown />
           </a>
-          <a
-            href={`mailto:${personalInfo.email}`}
-            aria-label="Send Email"
-            className="p-2.5 rounded-xl bg-slate-800/50 text-slate-400 hover:text-indigo-400 hover:bg-slate-700/50 transition-all"
-          >
-            <FaEnvelope size={20} />
-          </a>
+          <RouterLink to="/resume" className={btn.secondary}>
+            Resume <FiArrowUpRight />
+          </RouterLink>
+          <div className="ml-1 flex items-center gap-1">
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+              className="grid h-10 w-10 place-items-center rounded-full text-muted hover:text-fg hover:bg-surface-2 transition-colors"
+            >
+              <FaLinkedinIn size={16} />
+            </a>
+            <a
+              href={`mailto:${personalInfo.email}`}
+              aria-label="Send email"
+              className="grid h-10 w-10 place-items-center rounded-full text-muted hover:text-fg hover:bg-surface-2 transition-colors"
+            >
+              <FiMail size={17} />
+            </a>
+          </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0, y: 30, rotate: 1.5 }}
+        animate={{ opacity: 1, y: 0, rotate: 0 }}
+        transition={{ duration: 0.9, delay: 0.25, ease: EASE }}
+        className="mx-auto w-full max-w-md lg:max-w-none"
       >
-        <Link
-          to="about"
-          spy
-          smooth
-          offset={-80}
-          duration={500}
-          className="cursor-pointer"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="text-slate-500 hover:text-indigo-400 transition-colors"
-          >
-            <FaChevronDown size={20} />
-          </motion.div>
-        </Link>
+        <CallDemo />
       </motion.div>
-    </section>
-  );
-};
+    </div>
+
+    {/* Metrics strip */}
+    <div className="mx-auto mt-20 max-w-6xl px-5 sm:px-8">
+      <motion.dl
+        {...fadeUp(0.45)}
+        className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4"
+      >
+        {metrics.map((m) => (
+          <div key={m.label} className="bg-bg px-6 py-6">
+            <dt className="sr-only">{m.label}</dt>
+            <dd>
+              <span className="block text-3xl md:text-4xl font-semibold tracking-tight text-fg tabular-nums">
+                {m.value()}
+              </span>
+              <span className="mt-1 block text-sm text-muted leading-snug">
+                {m.label}
+              </span>
+            </dd>
+          </div>
+        ))}
+      </motion.dl>
+    </div>
+  </section>
+);
 
 export default Hero;

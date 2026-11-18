@@ -1,65 +1,234 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Dark mode is driven by a class on <html> (set before paint in index.html). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens                                                       */
+/* ------------------------------------------------------------------ */
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --surface-2: #f3f3ef;
+  --border: #e6e5df;
+  --border-strong: #d4d3cb;
+  --text: #0d0d0c;
+  --muted: #55554f;
+  --subtle: #807f77;
+  --accent: #c2ef4e; /* fills: buttons, dots, highlights */
+  --accent-ink: #0d0d0c; /* text on accent fills */
+  --accent-text: #4a7a00; /* accent used as text on bg */
+  --accent-soft: rgba(132, 184, 0, 0.12);
+  --glow: rgba(150, 200, 30, 0.18);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #09090a;
+  --surface: #111113;
+  --surface-2: #18181b;
+  --border: #232327;
+  --border-strong: #34343a;
+  --text: #ededec;
+  --muted: #a1a1a6;
+  --subtle: #6e6e76;
+  --accent: #c6f24e;
+  --accent-ink: #0a0a0b;
+  --accent-text: #c6f24e;
+  --accent-soft: rgba(198, 242, 78, 0.1);
+  --glow: rgba(198, 242, 78, 0.14);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-sans:
+    "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --breakpoint-xs: 30rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    sans-serif;
-  background-color: #020617;
-  color: #f1f5f9;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 ::selection {
-  background-color: #6366f1;
-  color: white;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--bg);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #4f46e5;
-  border-radius: 3px;
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 3px solid var(--bg);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+/* Subtle dotted grid used behind the hero */
+.bg-grid {
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 40%,
+    #000 40%,
+    transparent 100%
+  );
 }
 
-/* Print styles for Resume page */
+/* Cursor-following spotlight on cards (see SpotlightCard) */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--x, 50%) var(--y, 50%),
+    var(--glow),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Voice waveform bars */
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.wave-bar {
+  transform-origin: center;
+  animation: wave 1.1s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 1.8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-line {
+  stroke-dasharray: 4 8;
+  animation: dash 1.2s linear infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Print styles for the Resume page (also used to generate the PDF)    */
+/* ------------------------------------------------------------------ */
+@page {
+  size: A4;
+  margin: 12mm 13mm;
+}
+
 @media print {
   .no-print {
     display: none !important;
   }
+  html,
   body {
-    background-color: #fff;
+    background-color: #fff !important;
     color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
   .resume-content {
     padding: 0 !important;
     max-width: 100% !important;
   }
+  .resume-content li,
+  .resume-section h2 {
+    break-inside: avoid;
+  }
+  .resume-section h2 {
+    break-after: avoid;
+  }
+  .resume-content a {
+    text-decoration: none;
+  }
 }
 
-/* Custom xs breakpoint utility */
-@media (min-width: 480px) {
-  .xs\:inline {
-    display: inline !important;
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  .xs\:hidden {
-    display: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

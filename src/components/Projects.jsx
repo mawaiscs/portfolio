@@ -1,117 +1,241 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { FaExternalLinkAlt, FaCheckCircle } from "react-icons/fa";
+import {
+  FiArrowUpRight,
+  FiPhone,
+  FiMessageCircle,
+  FiCpu,
+  FiVolume2,
+  FiZap,
+  FiDatabase,
+  FiCheckCircle,
+} from "react-icons/fi";
 import { projects } from "../data/portfolioData";
+import { Chip, Reveal, SectionHeader, SpotlightCard } from "./ui";
 
-const Projects = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+/* ---------- Callvio: real-time pipeline diagram ---------- */
+const Node = ({ icon: Icon, title, sub, accent }) => (
+  <div
+    className={`relative flex min-w-0 flex-1 flex-col items-center rounded-xl border px-2 py-3 text-center ${
+      accent ? "border-accent/60 bg-accent-soft" : "border-line bg-surface"
+    }`}
+  >
+    <Icon className={accent ? "text-accent-text" : "text-muted"} size={16} />
+    <p className="mt-1.5 text-[12px] font-medium leading-tight text-fg">
+      {title}
+    </p>
+    <p className="mt-0.5 font-mono text-[9.5px] leading-tight text-subtle">
+      {sub}
+    </p>
+  </div>
+);
 
-  return (
-    <section id="projects" className="py-24 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Featured Projects
-          </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full" />
-        </motion.div>
+const Connector = () => (
+  <svg
+    className="hidden h-3 w-5 shrink-0 self-center text-line-strong sm:block"
+    viewBox="0 0 20 12"
+    aria-hidden="true"
+  >
+    <line
+      x1="0"
+      y1="6"
+      x2="20"
+      y2="6"
+      stroke="currentColor"
+      strokeWidth="2"
+      className="flow-line"
+    />
+  </svg>
+);
 
-        <div className="space-y-12">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="group rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/50 hover:border-indigo-500/30 transition-all duration-300"
-            >
-              {/* Project header with gradient */}
-              <div
-                className="relative p-8 sm:p-10"
-                style={{
-                  background: `linear-gradient(to bottom right, ${project.gradientFrom}26, ${project.gradientTo}26)`,
-                }}
-              >
-                <div className="absolute inset-0 bg-slate-950/60" />
-                <div className="relative z-10">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-4xl">{project.image}</span>
-                      <h3 className="text-2xl font-bold text-white">
-                        {project.title}
-                      </h3>
-                    </div>
-                    <div className="flex gap-2">
-                      {Object.entries(project.links).map(([label, url]) => (
-                        <a
-                          key={label}
-                          href={url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm transition-colors capitalize"
-                        >
-                          <FaExternalLinkAlt size={10} /> {label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-slate-200 leading-relaxed max-w-3xl">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Features & Tech */}
-              <div className="p-8 sm:p-10">
-                <div className="grid sm:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                      Key Features
-                    </h4>
-                    <ul className="space-y-3">
-                      {project.features.map((f, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-sm text-slate-300"
-                        >
-                          <FaCheckCircle
-                            className="text-indigo-500 mt-0.5 shrink-0"
-                            size={14}
-                          />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                      Tech Stack
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 border border-slate-700/50 hover:border-indigo-500/30 hover:text-indigo-300 transition-colors"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+const VoicePipeline = () => (
+  <figure className="rounded-2xl border border-line bg-bg/60 p-4 sm:p-5">
+    <figcaption className="mb-4 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider text-subtle">
+      <span>Real-time voice pipeline</span>
+      <span className="text-accent-text">streaming</span>
+    </figcaption>
+    <div className="flex items-stretch gap-1.5 sm:gap-1">
+      <Node icon={FiPhone} title="Caller" sub="PSTN / SIP" />
+      <Connector />
+      <Node icon={FiVolume2} title="STT" sub="Deepgram · Google" />
+      <Connector />
+      <Node icon={FiCpu} title="LLM + tools" sub="state · knowledge" accent />
+      <Connector />
+      <Node icon={FiVolume2} title="TTS" sub="early reply audio" />
+    </div>
+    <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5">
+        <FiMessageCircle className="shrink-0 text-muted" size={14} />
+        <p className="text-[11.5px] leading-tight text-muted">
+          <span className="text-fg font-medium">Same agent</span> on WhatsApp,
+          Instagram, Messenger, web
+        </p>
       </div>
-    </section>
-  );
-};
+      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2.5">
+        <FiDatabase className="shrink-0 text-muted" size={14} />
+        <p className="text-[11.5px] leading-tight text-muted">
+          <span className="text-fg font-medium">Workflows</span>: bookings,
+          orders, CRM, billing
+        </p>
+      </div>
+    </div>
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {[
+        "Barge-in",
+        "Stale-reply guard",
+        "Urdu ↔ English",
+        "Human handover",
+      ].map((t) => (
+        <span
+          key={t}
+          className="inline-flex items-center gap-1 rounded-full bg-surface-2 px-2 py-0.5 font-mono text-[10px] text-muted"
+        >
+          <FiZap size={9} className="text-accent-text" />
+          {t}
+        </span>
+      ))}
+    </div>
+  </figure>
+);
+
+/* ---------- DocNow: impact panel ---------- */
+const ImpactPanel = () => (
+  <figure className="rounded-2xl border border-line bg-bg/60 p-4 sm:p-5">
+    <figcaption className="mb-4 font-mono text-[11px] uppercase tracking-wider text-subtle">
+      Measured impact
+    </figcaption>
+    <div className="grid grid-cols-2 gap-3">
+      {[
+        { v: "40%", l: "faster page loads", w: 40 },
+        { v: "25%", l: "higher user engagement", w: 25 },
+      ].map((m) => (
+        <div key={m.l} className="rounded-xl border border-line bg-surface p-4">
+          <p className="text-3xl font-semibold tracking-tight text-fg">{m.v}</p>
+          <p className="mt-1 text-xs text-muted">{m.l}</p>
+          <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-surface-2">
+            <div
+              className="h-full rounded-full bg-accent"
+              style={{ width: `${m.w * 2}%` }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+    <ul className="mt-3 grid gap-1.5">
+      {[
+        "Lazy loading + AOT builds",
+        "CDN delivery & bundle splitting",
+        "Indexed MongoDB aggregations",
+      ].map((t) => (
+        <li
+          key={t}
+          className="flex items-center gap-2 text-[12.5px] text-muted"
+        >
+          <FiCheckCircle className="text-accent-text" size={13} /> {t}
+        </li>
+      ))}
+    </ul>
+  </figure>
+);
+
+const visuals = { 1: VoicePipeline, 2: ImpactPanel };
+
+const Projects = () => (
+  <section id="projects" className="py-24 md:py-32">
+    <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <SectionHeader
+        index="03"
+        label="Selected work"
+        title="Case studies"
+        intro="The problem, what I owned, and what I built — with the architecture behind it."
+      />
+
+      <div className="space-y-8">
+        {projects.map((p, i) => {
+          const Visual = visuals[p.id];
+          return (
+            <Reveal key={p.id} delay={i * 0.05}>
+              <SpotlightCard as="article" className="overflow-hidden">
+                <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="font-mono text-xs text-subtle">
+                        0{i + 1}
+                      </span>
+                      <span className="h-px flex-1 bg-line" />
+                      <div className="flex gap-2">
+                        {Object.entries(p.links).map(([label, url]) => (
+                          <a
+                            key={label}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-1 rounded-full border border-line px-3 py-1 text-xs capitalize text-muted hover:border-line-strong hover:text-fg transition-colors"
+                          >
+                            {label === "live" ? "Website" : "App"}
+                            <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    <h3 className="mt-6 text-2xl sm:text-3xl font-semibold tracking-tight text-fg text-balance">
+                      {p.title}
+                    </h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted text-pretty">
+                      {p.summary}
+                    </p>
+
+                    <dl className="mt-7 space-y-5">
+                      <div>
+                        <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">
+                          The problem
+                        </dt>
+                        <dd className="mt-1.5 text-[15px] leading-relaxed text-fg text-pretty">
+                          {p.problem}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="font-mono text-[11px] uppercase tracking-wider text-subtle">
+                          My role
+                        </dt>
+                        <dd className="mt-1.5 text-[15px] leading-relaxed text-fg">
+                          {p.role}
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+
+                  <div className="flex flex-col gap-6">
+                    {Visual && <Visual />}
+                    <div>
+                      <p className="font-mono text-[11px] uppercase tracking-wider text-subtle mb-3">
+                        What I built
+                      </p>
+                      <ul className="space-y-2">
+                        {p.features.map((f) => (
+                          <li
+                            key={f}
+                            className="flex gap-2.5 text-sm leading-relaxed text-muted"
+                          >
+                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-text" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-1.5 border-t border-line bg-surface-2/40 px-6 py-4 sm:px-10">
+                  {p.tech.map((t) => (
+                    <Chip key={t}>{t}</Chip>
+                  ))}
+                </div>
+              </SpotlightCard>
+            </Reveal>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);
 
 export default Projects;

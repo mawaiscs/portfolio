@@ -1,4 +1,20 @@
 {
+  "redirects": [
+    {
+      "source": "/resume-download",
+      "destination": "/Muhammad_Awais_Resume.pdf",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/Muhammad_Awais_Resume.pdf",
+      "headers": [
+        { "key": "Content-Type", "value": "application/pdf" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

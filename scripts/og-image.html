@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+      body { font-family: Geist, Arial, sans-serif; background: #09090a; color: #ededec; position: relative; }
+      .grid { position: absolute; inset: 0; background-image: radial-gradient(#2a2a2f 1.2px, transparent 1.2px); background-size: 26px 26px;
+        -webkit-mask-image: radial-gradient(ellipse 75% 70% at 30% 45%, #000 30%, transparent 100%); }
+      .glow { position: absolute; width: 760px; height: 420px; border-radius: 50%; background: #c6f24e; opacity: .09; filter: blur(120px); left: -120px; top: -80px; }
+      .c { position: absolute; left: 88px; top: 0; bottom: 0; width: 1030px; display: flex; flex-direction: column; justify-content: center; }
+      .eyebrow { font-family: "Geist Mono", monospace; font-size: 20px; letter-spacing: .16em; text-transform: uppercase; color: #6e6e76; display: flex; align-items: center; gap: 14px; }
+      .dot { width: 10px; height: 10px; border-radius: 50%; background: #c6f24e; box-shadow: 0 0 0 6px rgba(198,242,78,.15); }
+      h1 { margin: 26px 0 0; font-size: 74px; line-height: 1.02; font-weight: 600; letter-spacing: -0.035em; }
+      h1 em { font-family: "Instrument Serif", serif; font-weight: 400; letter-spacing: 0; color: #c6f24e; }
+      .name { margin-top: 34px; font-size: 30px; font-weight: 500; }
+      .name span { color: #a1a1a6; font-weight: 400; }
+      .wave { position: absolute; right: 88px; bottom: 70px; display: flex; gap: 6px; align-items: center; height: 70px; }
+      .wave i { display: block; width: 6px; border-radius: 6px; background: #c6f24e; }
+      .url { position: absolute; left: 88px; bottom: 56px; font-family: "Geist Mono", monospace; font-size: 20px; color: #6e6e76; }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <div class="grid"></div>
+    <div class="c">
+      <div class="eyebrow"><span class="dot"></span>Senior Software Engineer · Lahore</div>
+      <h1>I build AI voice agents that hold up on <em>real phone calls.</em></h1>
+      <div class="name">Muhammad Awais <span>— Callvio · ex-DocNow EHR</span></div>
+    </div>
+    <div class="wave" id="w"></div>
+    <div class="url">portfolio-mawais.vercel.app</div>
+    <script>
+      const w = document.getElementById("w");
+      [18, 34, 52, 30, 64, 44, 24, 58, 70, 40, 26, 50, 36, 20, 46, 62, 32, 22].forEach((h, i) => {
+        const b = document.createElement("i");
+        b.style.height = h + "px";
+        b.style.opacity = 0.45 + ((i * 29) % 55) / 100;
+        w.appendChild(b);
+      });
+    </script>
+  </body>
+</html>

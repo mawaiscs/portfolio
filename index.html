@@ -4,20 +4,114 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#020617" />
-    <title>Muhammad Awais | Senior Software Engineer</title>
+    <meta name="theme-color" content="#09090a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
+    <script>
+      // Apply the saved / system theme before first paint (no flash).
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t ? t === "dark" : true;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <title>Muhammad Awais | Senior Software Engineer — AI Voice Agents &amp; Full-Stack</title>
     <meta
       name="description"
-      content="Senior Software Engineer with 3+ years of experience building scalable web applications, cloud-native solutions, and AI-driven platforms."
+      content="Muhammad Awais — Senior Software Engineer in Lahore building production AI voice and chat agents (Urdu &amp; English), real-time telephony, Node.js, React and cloud-native SaaS. Currently at Callvio, previously DocNow EHR."
     />
+    <meta name="author" content="Muhammad Awais" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://portfolio-mawais.vercel.app/" />
+
+    <!-- Open Graph / LinkedIn / WhatsApp previews -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Muhammad Awais" />
+    <meta property="og:url" content="https://portfolio-mawais.vercel.app/" />
+    <meta property="og:title" content="Muhammad Awais — Senior Software Engineer (AI Voice Agents &amp; Full-Stack)" />
+    <meta
+      property="og:description"
+      content="I build production AI voice &amp; chat agents and the cloud-native platforms behind them. Node.js · React · Angular · Real-time telephony · LLMs."
+    />
+    <meta property="og:image" content="https://portfolio-mawais.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Muhammad Awais — Senior Software Engineer" />
+    <meta property="profile:first_name" content="Muhammad" />
+    <meta property="profile:last_name" content="Awais" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Muhammad Awais — Senior Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Production AI voice &amp; chat agents, real-time telephony and cloud-native Node.js / React platforms."
+    />
+    <meta name="twitter:image" content="https://portfolio-mawais.vercel.app/og-image.png" />
+
+    <!-- Structured data: helps search engines connect this site to the person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://portfolio-mawais.vercel.app/#person",
+            "name": "Muhammad Awais",
+            "jobTitle": "Senior Software Engineer",
+            "url": "https://portfolio-mawais.vercel.app/",
+            "image": "https://portfolio-mawais.vercel.app/og-image.png",
+            "email": "mailto:muhammadawais.cse@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lahore",
+              "addressCountry": "PK"
+            },
+            "worksFor": { "@type": "Organization", "name": "Callvio", "url": "https://callvio.co/" },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Punjab University College of Information Technology (PUCIT)"
+            },
+            "sameAs": ["https://www.linkedin.com/in/awais-cs/"],
+            "knowsAbout": [
+              "Conversational AI",
+              "AI voice agents",
+              "Large language models",
+              "Speech-to-text and text-to-speech",
+              "Telephony and SIP",
+              "Node.js",
+              "React",
+              "Angular",
+              "MongoDB",
+              "Redis",
+              "Google Cloud Run",
+              "AWS"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://portfolio-mawais.vercel.app/#website",
+            "url": "https://portfolio-mawais.vercel.app/",
+            "name": "Muhammad Awais — Portfolio",
+            "author": { "@id": "https://portfolio-mawais.vercel.app/#person" }
+          }
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
+    <noscript>
+      Muhammad Awais — Senior Software Engineer (AI voice agents, Node.js, React, Angular). Lahore,
+      Pakistan. Email: muhammadawais.cse@gmail.com · LinkedIn: https://www.linkedin.com/in/awais-cs/
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -19,7 +19,20 @@ npm install
 npm run dev       # http://localhost:5173
 npm run build     # Production build → dist/
 npm run preview   # Preview production build
+npm run resume:pdf  # Rebuild the downloadable resume PDF + Markdown from the /resume page
 ```
+
+## Updating content
+
+All content lives in `src/data/portfolioData.js` — the website, the `/resume` page, the
+downloadable PDF and `Muhammad_Awais_Resume.md` are all generated from it. After editing,
+run `npm run resume:pdf` so the PDF matches. "Years of experience" and role durations are
+calculated automatically from the dates.
+
+## SEO
+
+`index.html` carries Open Graph / Twitter tags and `Person` JSON-LD; `public/robots.txt`,
+`public/sitemap.xml` and `public/og-image.png` (rendered from `scripts/og-image.html`).
 
 ## Project Structure
 
@@ -38,7 +51,7 @@ src/
 │   ├── Education.jsx    # Education
 │   ├── Contact.jsx      # Contact form
 │   ├── Footer.jsx       # Footer
-│   └── Resume.jsx       # Resume page + PDF download
+│   └── Resume.jsx       # ATS-friendly resume page (source of the PDF)
 └── data/
     └── portfolioData.js # Centralized content data
 ```

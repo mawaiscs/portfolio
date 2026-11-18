@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* 1584x396 LinkedIn cover. Left ~520px stays clear for the profile photo. */
+      html, body { margin: 0; width: 1584px; height: 396px; overflow: hidden; }
+      body { font-family: Geist, Arial, sans-serif; background: #09090a; color: #ededec; position: relative; }
+      .grid { position: absolute; inset: 0; background-image: radial-gradient(#2a2a2f 1.2px, transparent 1.2px); background-size: 24px 24px;
+        -webkit-mask-image: radial-gradient(ellipse 60% 90% at 65% 50%, #000 30%, transparent 100%); }
+      .glow { position: absolute; width: 700px; height: 300px; border-radius: 50%; background: #c6f24e; opacity: .08; filter: blur(110px); left: 600px; top: -60px; }
+      .c { position: absolute; left: 560px; right: 90px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+      .eyebrow { font-family: "Geist Mono", monospace; font-size: 16px; letter-spacing: .16em; text-transform: uppercase; color: #6e6e76; display: flex; align-items: center; gap: 12px; }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: #c6f24e; box-shadow: 0 0 0 5px rgba(198,242,78,.15); }
+      h1 { margin: 18px 0 0; font-size: 46px; line-height: 1.04; font-weight: 600; letter-spacing: -0.03em; }
+      h1 em { white-space: nowrap; font-family: "Instrument Serif", serif; font-weight: 400; letter-spacing: 0; color: #c6f24e; }
+      .tags { margin-top: 22px; white-space: nowrap; font-family: "Geist Mono", monospace; font-size: 14.5px; color: #a1a1a6; }
+      .wave { position: absolute; right: 90px; bottom: 44px; display: flex; gap: 5px; align-items: center; height: 50px; }
+      .wave i { display: block; width: 5px; border-radius: 5px; background: #c6f24e; }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <div class="grid"></div>
+    <div class="wave" id="w"></div>
+    <div class="c">
+      <div class="eyebrow"><span class="dot"></span>Senior Software Engineer · Callvio</div>
+      <h1>AI voice agents that hold up on <em>real phone calls.</em></h1>
+      <div class="tags">Urdu/English voice &amp; chat AI · Real-time telephony · Node.js · React · portfolio-mawais.vercel.app</div>
+    </div>
+    <script>
+      const w = document.getElementById("w");
+      [14, 26, 40, 22, 48, 34, 18, 44, 30, 20, 38, 24].forEach((h, i) => {
+        const b = document.createElement("i");
+        b.style.height = h + "px";
+        b.style.opacity = 0.45 + ((i * 29) % 55) / 100;
+        w.appendChild(b);
+      });
+    </script>
+  </body>
+</html>

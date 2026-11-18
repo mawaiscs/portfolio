@@ -1,195 +1,93 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import {
-  FaEnvelope,
-  FaPhone,
-  FaMapMarkerAlt,
-  FaLinkedin,
-  FaPaperPlane,
-} from "react-icons/fa";
+import { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FiArrowUpRight, FiCheck, FiCopy, FiMail } from "react-icons/fi";
 import { personalInfo } from "../data/portfolioData";
-
-const contactItems = [
-  {
-    icon: FaEnvelope,
-    label: "Email",
-    value: personalInfo.email,
-    href: `mailto:${personalInfo.email}`,
-  },
-  {
-    icon: FaPhone,
-    label: "Phone",
-    value: personalInfo.phone,
-    href: `tel:${personalInfo.phone}`,
-  },
-  {
-    icon: FaMapMarkerAlt,
-    label: "Location",
-    value: personalInfo.location,
-    href: null,
-  },
-  {
-    icon: FaLinkedin,
-    label: "LinkedIn",
-    value: "Connect on LinkedIn",
-    href: personalInfo.linkedin,
-  },
-];
+import { Reveal, VoiceWave } from "./ui";
+import { btn } from "./buttons";
 
 const Contact = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(
-      `Portfolio Contact from ${formData.name}`,
-    );
-    const body = encodeURIComponent(
-      `${formData.message}\n\nFrom: ${formData.name} (${formData.email})`,
-    );
-    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${personalInfo.email}`;
+    }
   };
 
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Get in Touch
-          </h2>
-          <p className="text-slate-400 max-w-lg mx-auto">
-            Have a project in mind or want to discuss opportunities? I'd love to
-            hear from you.
-          </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-indigo-500 to-violet-500 mx-auto rounded-full mt-4" />
-        </motion.div>
+    <section id="contact" className="py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-16 text-center sm:px-12 md:py-24">
+            <div
+              className="bg-grid absolute inset-0 opacity-50"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute left-1/2 top-0 h-64 w-[640px] -translate-x-1/2 rounded-full bg-accent/15 blur-[100px] dark:bg-accent/10"
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <VoiceWave bars={22} className="mx-auto mb-8 h-7 w-fit" />
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-subtle">
+                06 — Contact
+              </p>
+              <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-tight text-fg text-balance sm:text-5xl md:text-6xl">
+                Let&apos;s build something that{" "}
+                <span className="font-serif italic font-normal text-accent-text">
+                  talks back
+                </span>
+                .
+              </h2>
+              <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted text-pretty">
+                {personalInfo.availability}. Happy to talk about voice AI,
+                real-time systems or senior full-stack roles, remote or in
+                Lahore.
+              </p>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-xl font-semibold text-white mb-6">
-              Let's connect
-            </h3>
-            <div className="space-y-4">
-              {contactItems.map((item) => (
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
                 <a
-                  key={item.label}
-                  href={item.href || "#"}
-                  target={item.href?.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.href?.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  className={`flex items-center gap-4 p-4 rounded-xl bg-slate-900/50 border border-slate-800/50 hover:border-indigo-500/30 transition-all group ${
-                    item.href
-                      ? "cursor-pointer"
-                      : "cursor-default pointer-events-none"
-                  }`}
+                  href={`mailto:${personalInfo.email}`}
+                  className={btn.primary}
                 >
-                  <div className="p-3 rounded-lg bg-indigo-600/10 text-indigo-400 group-hover:bg-indigo-600/20 transition-colors">
-                    <item.icon size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider">
-                      {item.label}
-                    </p>
-                    <p className="text-slate-200 text-sm">{item.value}</p>
-                  </div>
+                  <FiMail /> Email me
                 </a>
-              ))}
+                <button
+                  onClick={copy}
+                  className={btn.secondary}
+                  aria-live="polite"
+                >
+                  {copied ? (
+                    <FiCheck className="text-accent-text" />
+                  ) : (
+                    <FiCopy />
+                  )}
+                  {copied ? "Copied!" : personalInfo.email}
+                </button>
+              </div>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm">
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={btn.ghost}
+                >
+                  <FaLinkedinIn /> LinkedIn <FiArrowUpRight />
+                </a>
+                <RouterLink to="/resume" className={btn.ghost}>
+                  Resume <FiArrowUpRight />
+                </RouterLink>
+                <a href={`tel:${personalInfo.phoneHref}`} className={btn.ghost}>
+                  {personalInfo.phone}
+                </a>
+              </div>
             </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label
-                  htmlFor="contact-name"
-                  className="block text-sm text-slate-400 mb-1.5"
-                >
-                  Name
-                </label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="contact-email"
-                  className="block text-sm text-slate-400 mb-1.5"
-                >
-                  Email
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors"
-                  placeholder="your@email.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block text-sm text-slate-400 mb-1.5"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows="5"
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  className="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <FaPaperPlane size={14} />
-                Send Message
-              </button>
-            </form>
-          </motion.div>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
