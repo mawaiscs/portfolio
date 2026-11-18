@@ -312,7 +312,7 @@ export const experiences = [
   {
     id: 2,
     company: "DocNow EHR (Binary Tech)",
-    role: "Senior Software Engineer",
+    role: "Senior Software Developer",
     type: "Full-time",
     location: "Lahore, Pakistan · Hybrid",
     start: "2022-05",
@@ -544,7 +544,7 @@ export const projects = [
     },
     problem:
       "Clinicians spend hours a day on documentation. The app had to be fast on any device, secure with patient data and dependable at scale.",
-    role: "Senior Software Engineer — Angular front-end architecture, Node.js APIs and MongoDB data modelling.",
+    role: "Senior Software Developer — Angular front-end architecture, Node.js APIs and MongoDB data modelling.",
     features: [
       "40% faster page loads and 25% higher engagement",
       "Charting, digital prescriptions, scheduling and patient history",

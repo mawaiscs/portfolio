@@ -23,7 +23,7 @@ _SaaS communications platform (voice, WhatsApp and web chat with AI assistance) 
 
 **Tech:** Node.js, TypeScript, React, Redux Toolkit, RTK Query, Redis, Firebase, WebSockets, Twilio, Infobip, WhatsApp API, OpenAI, Google Cloud Run, CI/CD
 
-### Senior Software Engineer, DocNow EHR (Binary Tech)
+### Senior Software Developer, DocNow EHR (Binary Tech)
 May 2022 – Apr 2025 · Lahore, Pakistan · Hybrid · [docnow.ai](https://docnow.ai/)
 
 _Electronic health record (EHR) SaaS for US post-acute care providers (formerly DoctorNow). Full-stack role across the Angular front end, Node.js APIs and MongoDB data layer on AWS._
