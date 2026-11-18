@@ -3,7 +3,9 @@
 //
 // Usage: npm run resume:pdf   (builds the site, previews it, prints with Chrome)
 import { spawn, execFileSync } from "node:child_process";
-import { existsSync, copyFileSync, statSync } from "node:fs";
+import { existsSync, copyFileSync, statSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { resolve } from "node:path";
 
 const PORT = 4179;
@@ -38,23 +40,35 @@ const wait = async (url, tries = 40) => {
   throw new Error(`Preview server did not start on ${url}`);
 };
 
+const profileDir = mkdtempSync(join(tmpdir(), "resume-pdf-"));
+// Print to a temp file first: if the target PDF is open in a viewer, Chrome
+// can't overwrite it in place, but a copy still works.
+const tmpPdf = join(profileDir, "resume.pdf");
+
 try {
   await wait(`http://localhost:${PORT}/`);
   execFileSync(
     chrome,
     [
       "--headless=new",
+      // Fresh profile each run so a cached old build is never printed.
+      `--user-data-dir=${profileDir}`,
       "--disable-gpu",
       "--no-pdf-header-footer",
       "--virtual-time-budget=5000",
-      `--print-to-pdf=${OUT}`,
+      `--print-to-pdf=${tmpPdf}`,
       `http://localhost:${PORT}/resume`,
     ],
     { stdio: "ignore" },
   );
-  copyFileSync(OUT, resolve("Muhammad_Awais_Resume.pdf"));
+  if (!existsSync(tmpPdf) || statSync(tmpPdf).size < 10_000) {
+    throw new Error("Chrome did not produce the resume PDF");
+  }
+  copyFileSync(tmpPdf, OUT);
+  copyFileSync(tmpPdf, resolve("Muhammad_Awais_Resume.pdf"));
   console.log(`Resume PDF written: ${OUT} (${Math.round(statSync(OUT).size / 1024)} KB)`);
 } finally {
+  rmSync(profileDir, { recursive: true, force: true });
   if (process.platform === "win32") {
     try {
       execFileSync("taskkill", ["/pid", String(preview.pid), "/T", "/F"], { stdio: "ignore" });
